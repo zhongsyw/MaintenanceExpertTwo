@@ -94,6 +94,8 @@
 		578B71211DC0AAC700453A18 /* XWPopMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 578B711E1DC0AAC700453A18 /* XWPopMenuController.m */; };
 		578B71281DC0AB2C00453A18 /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 578B71231DC0AB2C00453A18 /* OneViewController.m */; };
 		578B71291DC0AB2C00453A18 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 578B71251DC0AB2C00453A18 /* ThreeViewController.m */; };
+		57AAB69A1DD3109300C8707B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AAB6991DD3109300C8707B /* MapKit.framework */; };
+		57AAB69C1DD310E600C8707B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AAB69B1DD310E600C8707B /* CoreLocation.framework */; };
 		57D7E1E41DB9AACA005E69E2 /* ZSChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7E1E31DB9AACA005E69E2 /* ZSChangePasswordVC.m */; };
 		57D7E1FC1DB9E378005E69E2 /* ZSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7E1FB1DB9E378005E69E2 /* ZSMessageView.m */; };
 		81A2D96C1A28D1EBC4B17F4E /* libPods-MaintenanceExpert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6528092F46243E4DB761EA15 /* libPods-MaintenanceExpert.a */; };
@@ -286,6 +288,8 @@
 		578B71231DC0AB2C00453A18 /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		578B71241DC0AB2C00453A18 /* ThreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeViewController.h; sourceTree = "<group>"; };
 		578B71251DC0AB2C00453A18 /* ThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeViewController.m; sourceTree = "<group>"; };
+		57AAB6991DD3109300C8707B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		57AAB69B1DD310E600C8707B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		57D7E1E21DB9AACA005E69E2 /* ZSChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSChangePasswordVC.h; sourceTree = "<group>"; };
 		57D7E1E31DB9AACA005E69E2 /* ZSChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSChangePasswordVC.m; sourceTree = "<group>"; };
 		57D7E1FA1DB9E378005E69E2 /* ZSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMessageView.h; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57AAB69C1DD310E600C8707B /* CoreLocation.framework in Frameworks */,
+				57AAB69A1DD3109300C8707B /* MapKit.framework in Frameworks */,
 				81A2D96C1A28D1EBC4B17F4E /* libPods-MaintenanceExpert.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -898,6 +904,8 @@
 		FAB04BAB2F5204EC9D3DD5DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57AAB69B1DD310E600C8707B /* CoreLocation.framework */,
+				57AAB6991DD3109300C8707B /* MapKit.framework */,
 				6528092F46243E4DB761EA15 /* libPods-MaintenanceExpert.a */,
 			);
 			name = Frameworks;
@@ -1313,7 +1321,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/koka/Desktop/MaintenanceExpert/MaintenanceExpert/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/koka/Desktop/MaintenanceExpertTwo/MaintenanceExpert/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = MaintenanceExpert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1328,7 +1336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/koka/Desktop/MaintenanceExpert/MaintenanceExpert/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/koka/Desktop/MaintenanceExpertTwo/MaintenanceExpert/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = MaintenanceExpert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

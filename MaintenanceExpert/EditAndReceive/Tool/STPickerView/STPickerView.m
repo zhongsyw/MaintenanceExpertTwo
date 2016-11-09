@@ -180,7 +180,7 @@
     if (!_contentView) {
         CGFloat contentX = 15;
         CGFloat contentY = ScreenHeight ;
-        CGFloat contentW = ScreenWidth - 30;
+        CGFloat contentW = ScreenWidth - 40;
         CGFloat contentH = self.heightPicker;
         _contentView = [[UIView alloc]initWithFrame:CGRectMake(contentX, contentY, contentW, contentH)];
         [_contentView setBackgroundColor:[UIColor cyanColor]];

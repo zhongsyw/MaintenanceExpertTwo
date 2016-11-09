@@ -24,7 +24,7 @@
     _titleUnit = @"";
     _arrayData = @[].mutableCopy;
     _heightPickerComponent = 44;
-    _widthPickerComponent = 32;
+    _widthPickerComponent = 200;
 
     [self.pickerView setDelegate:self];
     [self.pickerView setDataSource:self];
@@ -57,11 +57,11 @@
 {
     
     if (component == 0) {
-        return (self.width-self.widthPickerComponent)/2;
+        return (self.width-self.widthPickerComponent)/3;
     }else if (component == 1){
         return self.widthPickerComponent;
     }else {
-        return (self.width-self.widthPickerComponent)/2;
+        return (self.width-self.widthPickerComponent)/3;
     }
 }
 

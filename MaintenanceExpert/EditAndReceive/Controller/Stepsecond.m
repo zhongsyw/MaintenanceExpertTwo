@@ -106,7 +106,7 @@
     _cell = [[UITableViewCell alloc]init];
 
     _detailArray = [[NSMutableArray alloc]initWithObjects:@"维修系统",@"维修时间",@"故障点",@"是否高空作业",@"郊县", nil];
-    _detailArray1 =[[NSMutableArray alloc]initWithObjects:@"服务类型",@"UPS类型",@"功率",@"主机品牌",@"UPS主机台数",@"电池组",@"UPS功率",@"电池主机间连线",@"是否郊县", nil];
+    _detailArray1 =[[NSMutableArray alloc]initWithObjects:@"服务类型",@"服务时间",@"UPS类型",@"功率",@"主机品牌",@"UPS主机台数",@"电池组",@"UPS功率",@"电池主机间连线",@"是否郊县", nil];
     self.titleArr = @[].mutableCopy;
 }
 
@@ -135,13 +135,6 @@
             return 30 * 4;
         }else{
             if (indexPath.row == 2) {
-                //            if (self.kindArr.count % 2 != 0) {
-                //                index = (self.kindArr.count + 1 / 2) * 50;
-                //                return index;
-                //            }else{
-                //                index = (self.kindArr.count / 2) * 50;
-                //                return index;
-                //            }
                 return 30 * 3;
             }else {
                 return 40;
@@ -150,9 +143,9 @@
         }
 
     }else{
-        if ((indexPath.row == 4)||(indexPath.row == 6)) {
+        if ((indexPath.row == 4)||(indexPath.row == 7)) {
             return 60;
-        }if (indexPath.row == 5) {
+        }if (indexPath.row == 6 ){
             return 70;
         }else{
             return 40;
@@ -222,16 +215,23 @@
 
                 break;
             case 1:
-                [self createUPSKindbtn];
+                _date = [[UITextField alloc]initWithFrame:CGRectMake(KScreenWidth / 3 , 12.5, KScreenWidth / 2, 25)];
+                _date.delegate  = self;
+                _date.textAlignment = NSTextAlignmentRight;
+                _date.placeholder = @"请选择时间:";
+                [celltwo addSubview:_date];
                 break;
             case 2:
+                [self createUPSKindbtn];
+                break;
+            case 3:
                 _Power = [[UITextField alloc]initWithFrame:CGRectMake(KScreenWidth / 3 , 12.5, KScreenWidth / 2, 25)];
                 _Power.delegate  = self;
                 _Power.textAlignment = NSTextAlignmentRight;
                 _Power.placeholder = @"请选择功率:";
                 [celltwo addSubview:_Power];
                 break;
-            case 3:
+            case 4:
                 _HostBrand = [[UITextField alloc]initWithFrame:CGRectMake(KScreenWidth / 3 , 12.5, KScreenWidth / 2, 25)];
                 _HostBrand.delegate  = self;
                 _HostBrand.textAlignment = NSTextAlignmentRight;
@@ -239,10 +239,10 @@
                 _HostBrand.returnKeyType = UIReturnKeyDone;
                 [celltwo addSubview:_HostBrand];
                 break;
-            case 4:
+            case 5:
                 [self createUPSHostNum];
                 break;
-            case 5:
+            case 6:
                 _BatteryPack = [[UITextField alloc]initWithFrame:CGRectMake(KScreenWidth / 3 , 12.5, KScreenWidth / 2, 25)];
                 _BatteryPack.delegate  = self;
                 _BatteryPack.textAlignment = NSTextAlignmentRight;
@@ -251,20 +251,20 @@
                 [celltwo addSubview:_BatteryPack];
                 
                 break;
-            case 6:
+            case 7:
                 [self createUPSPower];
                 break;
-            case 7:
+            case 8:
                 [self createLine];
                 break;
-            case 8:
+            case 9:
                 [self createCountry];
                 break;
             
             default:
                 break;
         }
-        if (indexPath.row == 5) {
+        if (indexPath.row == 6) {
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(KScreenWidth / 3, 35, KScreenWidth * 5 / 9 , 30)];
             label.text = @"*注：每组电池个数不超过20个，超过按多一组计算。电池个数最大2000个。";
             label.numberOfLines = 2;
@@ -562,7 +562,7 @@
     if (self.interkind == 0) {
         nextbtn.frame = CGRectMake(KScreenWidth / 3, 370, KScreenWidth / 3, 40);
     }else{
-        nextbtn.frame = CGRectMake(KScreenWidth / 3, 430, KScreenWidth / 3, 40);
+        nextbtn.frame = CGRectMake(KScreenWidth / 3, 470, KScreenWidth / 3, 40);
     }
     [nextbtn setTitle:@"下 一 步" forState:UIControlStateNormal];
     nextbtn.layer.cornerRadius = 10;
