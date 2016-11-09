@@ -21,6 +21,7 @@
     self.view.backgroundColor = [UIColor cyanColor];
     self.view.backgroundColor = [UIColor yellowColor];
     self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor greenColor];
 }
 
 - (void)didReceiveMemoryWarning {
