@@ -138,6 +138,10 @@
         
         NSLog(@"前往付款---");
         
+        TwoPayTypeViewController *payType = [[TwoPayTypeViewController alloc] init];
+        
+        [self.navigationController pushViewController:payType animated:YES];
+        
     }];
     
     // Add the actions.
