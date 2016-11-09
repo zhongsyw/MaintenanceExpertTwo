@@ -11,6 +11,9 @@
 		300061DD1DD0542C000D1BD5 /* TwoDetailsTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 300061DC1DD0542C000D1BD5 /* TwoDetailsTabViewCell.m */; };
 		300061E01DD054FF000D1BD5 /* TwoPayTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300061DF1DD054FF000D1BD5 /* TwoPayTypeViewController.m */; };
 		305EA8D11DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 305EA8D01DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle */; };
+		305EA8D31DD310AC00C33F41 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305EA8D21DD310AC00C33F41 /* MapKit.framework */; };
+		305EA8D51DD310F100C33F41 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305EA8D41DD310F100C33F41 /* CoreLocation.framework */; };
+		305EA8D81DD3135200C33F41 /* ZSHomeMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EA8D71DD3135200C33F41 /* ZSHomeMapView.m */; };
 		30D39C951DCC5FBF002B4801 /* ZSHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D39C941DCC5FBF002B4801 /* ZSHomeTableViewCell.m */; };
 		30E3169D1DCB36D200B6ADA4 /* ZSLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E3169A1DCB36D200B6ADA4 /* ZSLeftTableViewCell.m */; };
 		30E3169E1DCB36D200B6ADA4 /* ZSRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E3169C1DCB36D200B6ADA4 /* ZSRightTableViewCell.m */; };
@@ -124,6 +127,10 @@
 		300061DE1DD054FF000D1BD5 /* TwoPayTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoPayTypeViewController.h; sourceTree = "<group>"; };
 		300061DF1DD054FF000D1BD5 /* TwoPayTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoPayTypeViewController.m; sourceTree = "<group>"; };
 		305EA8D01DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
+		305EA8D21DD310AC00C33F41 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		305EA8D41DD310F100C33F41 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		305EA8D61DD3135200C33F41 /* ZSHomeMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeMapView.h; sourceTree = "<group>"; };
+		305EA8D71DD3135200C33F41 /* ZSHomeMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeMapView.m; sourceTree = "<group>"; };
 		30D39C931DCC5FBF002B4801 /* ZSHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeTableViewCell.h; sourceTree = "<group>"; };
 		30D39C941DCC5FBF002B4801 /* ZSHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeTableViewCell.m; sourceTree = "<group>"; };
 		30E316991DCB36D200B6ADA4 /* ZSLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLeftTableViewCell.h; sourceTree = "<group>"; };
@@ -300,6 +307,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				305EA8D51DD310F100C33F41 /* CoreLocation.framework in Frameworks */,
+				305EA8D31DD310AC00C33F41 /* MapKit.framework in Frameworks */,
 				81A2D96C1A28D1EBC4B17F4E /* libPods-MaintenanceExpert.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,6 +603,8 @@
 			children = (
 				30D39C931DCC5FBF002B4801 /* ZSHomeTableViewCell.h */,
 				30D39C941DCC5FBF002B4801 /* ZSHomeTableViewCell.m */,
+				305EA8D61DD3135200C33F41 /* ZSHomeMapView.h */,
+				305EA8D71DD3135200C33F41 /* ZSHomeMapView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -898,6 +909,8 @@
 		FAB04BAB2F5204EC9D3DD5DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				305EA8D41DD310F100C33F41 /* CoreLocation.framework */,
+				305EA8D21DD310AC00C33F41 /* MapKit.framework */,
 				6528092F46243E4DB761EA15 /* libPods-MaintenanceExpert.a */,
 			);
 			name = Frameworks;
@@ -1144,6 +1157,7 @@
 				30E3169E1DCB36D200B6ADA4 /* ZSRightTableViewCell.m in Sources */,
 				30F6C5A81DD1AA67009E766C /* ZLShowBigImgViewController.m in Sources */,
 				30E316AA1DCB384F00B6ADA4 /* TwoCategoryViewController.m in Sources */,
+				305EA8D81DD3135200C33F41 /* ZSHomeMapView.m in Sources */,
 				5753F0511DC824E7001D95D6 /* NSCalendar+ST.m in Sources */,
 				5768C2451DB5BB2C0069B421 /* ZSMessageViewController.m in Sources */,
 				30F6C59E1DD1AA67009E766C /* ToastUtils.m in Sources */,
@@ -1313,7 +1327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/koka/Desktop/MaintenanceExpert/MaintenanceExpert/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/zsyw/Desktop/MaintenanceExpertTwo/MaintenanceExpert/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = MaintenanceExpert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1328,7 +1342,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/koka/Desktop/MaintenanceExpert/MaintenanceExpert/Other/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/zsyw/Desktop/MaintenanceExpertTwo/MaintenanceExpert/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = MaintenanceExpert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

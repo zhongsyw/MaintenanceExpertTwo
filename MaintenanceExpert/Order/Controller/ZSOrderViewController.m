@@ -154,7 +154,6 @@
         
         static NSString *leftIdentifier = @"cell";
         ZSLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:leftIdentifier];
-        
         if(!cell) {
             cell = [[ZSLeftTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:leftIdentifier];
         }
