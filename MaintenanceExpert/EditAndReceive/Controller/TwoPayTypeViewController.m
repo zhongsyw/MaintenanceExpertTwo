@@ -37,7 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor cyanColor];
+    self.view.backgroundColor = [UIColor blueColor];
 
     _payTypeArr = [[NSArray alloc] initWithObjects:@"支付宝支付",@"微信支付",@"银行卡支付", nil];
     
