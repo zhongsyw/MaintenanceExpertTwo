@@ -11,9 +11,20 @@
 @implementation ZSAlertView
 // 单个或多个按钮
 
-+ (void)showAlertViewWith:(UIViewController *)viewController title:(NSString *)title message:(NSString *)message CallBackBlock:(CallBackBlock)block cancelButtonTitle:(NSString *)cancelBtnTitle destructiveButtonTitle:(NSString *)destructiveBtnTitle otherButtonTitles:(NSString *)otherBtnTitles,... {
++ (void)showAlertViewWith:(UIViewController *)viewController imagename:(NSString *)imagename title:(NSString *)title message:(NSString *)message CallBackBlock:(CallBackBlock)block cancelButtonTitle:(NSString *)cancelBtnTitle destructiveButtonTitle:(NSString *)destructiveBtnTitle otherButtonTitles:(NSString *)otherBtnTitles,... {
     
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIImageView *image = [[UIImageView alloc]init];
+    image.frame = CGRectMake(0, 0, 270, 84);
+    image.backgroundColor = [UIColor blueColor];
+    image.image = [UIImage imageNamed:imagename];
+    image.layer.cornerRadius = 13;
+    image.layer.masksToBounds = YES;
+    image.contentMode = UIViewContentModeScaleAspectFill;
+    [alertController.view addSubview:image];
+    NSLog(@"%f,%f",image.frame.size.width,image.frame.size.height);
     
     //添加按钮
     if (cancelBtnTitle.length) {
@@ -46,6 +57,8 @@
         }
         va_end(args);
     }
+    
+
     
     [viewController presentViewController:alertController animated:YES completion:nil];
     

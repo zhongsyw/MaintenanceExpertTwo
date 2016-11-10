@@ -53,7 +53,7 @@
         
         _ary = [NSArray array];
         
-        _ary = @[@"group-3",@"group-2",@"group-4",@"group-5"];
+        _ary = @[@"group-3",@"group-2",@"group-4",@"group-5",@"group-6"];
         
     }
     
@@ -173,17 +173,18 @@
 
     for (int i = 0; i < self.ary.count; i++) {
         
-        NSArray *arrTitle = @[@"拍照",@"快速下单",@"btnup",@"btndown"];
+        NSArray *arrTitle = @[@"拍照下单",@"快速下单",@"",@"",@""];
         
         PublishMenuButton *btn = [PublishMenuButton buttonWithType:UIButtonTypeCustom];
         
         //图标图片和文本
         UIImage *img = [UIImage imageNamed:self.ary[i]];
         NSString *title = arrTitle[i];
-        
+         btn.contentMode = UIViewContentModeScaleAspectFit;
         [btn setImage:img forState:UIControlStateNormal];
         [btn setTitle:title forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:16];
+         btn.titleLabel.font = [UIFont systemFontOfSize:16];
+        
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         //列数(个数除总列数取余)
@@ -199,26 +200,41 @@
             btn.frame = CGRectMake(KScreenWidth / 10, kScreenHeight / 4, KScreenWidth - KScreenWidth/5, 80);
             btn.layer.cornerRadius = 10;
             btn.backgroundColor = [UIColor whiteColor];
-            [btn setImage:nil forState:UIControlStateNormal];
-            
-            
+            UIImage *image1 = [UIImage imageNamed:@"group-5.jpg"];
+            [btn setBackgroundImage:image1 forState:UIControlStateNormal];
+            btn.contentMode = UIViewContentModeScaleAspectFit;
+            btn.layer.masksToBounds = YES;
+           
         }else if (i == 3) {
             
             btn.frame = CGRectMake(KScreenWidth / 10, kScreenHeight / 4 + 100 , KScreenWidth - KScreenWidth/5, 80);
             btn.layer.cornerRadius = 10;
             btn.backgroundColor = [UIColor whiteColor];
-            [btn setImage:nil forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"group-4.jpg"] forState:UIControlStateNormal];
+            
+            btn.contentMode = UIViewContentModeScaleAspectFill;
+            btn.layer.masksToBounds = YES;
+            
+        }else if (i == 4) {
+            
+            btn.frame = CGRectMake(KScreenWidth / 10, kScreenHeight / 4 - 80, KScreenWidth - KScreenWidth/5, 80);
+            btn.layer.cornerRadius = 10;
+            btn.backgroundColor = [UIColor clearColor];
+            
+            UIImageView *bigw = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width / 2, 0, btn.frame.size.width / 2, btn.frame.size.height)];
+            bigw.image = [UIImage imageNamed:@"F467204C6EE07CCFAC51104A7AB4CCF2.jpg"];
+            bigw.contentMode = UIViewContentModeScaleAspectFit;
+            [btn addSubview:bigw];
             
             
-        } else  if (i == 0) {
+        } else if (i == 0) {
             
             btn.frame = CGRectMake( (KScreenWidth - 200) / 3, y, wh, wh);
-
-        }else {
+            
+        } else {
             
             btn.frame = CGRectMake((2 * KScreenWidth - 400) / 3 + 100, y, wh, wh);
         }
-        
         
         btn.transform = CGAffineTransformMakeTranslation(0, self.view.bounds.size.height);
         

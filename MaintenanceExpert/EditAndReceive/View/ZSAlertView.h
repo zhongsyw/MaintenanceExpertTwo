@@ -23,7 +23,7 @@ typedef void (^CallBackBlock)(NSInteger btnIndex);
  * @param destructiveBtn    destructiveBtn按钮
  * @param otherButtonTitles 确定按钮
  */
-+ (void)showAlertViewWith:(UIViewController *)viewController title:(NSString *)title message:(NSString *)message
++ (void)showAlertViewWith:(UIViewController *)viewController imagename:(NSString *)imagename title:(NSString *)title message:(NSString *)message
             CallBackBlock:(CallBackBlock)textBlock cancelButtonTitle:(NSString *)cancelBtnTitle
    destructiveButtonTitle:(NSString *)destructiveBtnTitle
         otherButtonTitles:(NSString *)otherBtnTitles,...NS_REQUIRES_NIL_TERMINATION;
