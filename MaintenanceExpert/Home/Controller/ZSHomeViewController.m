@@ -9,7 +9,7 @@
 #import "ZSHomeViewController.h"
 #import "SDCycleScrollView.h"
 #import "ZSHomeTableViewCell.h"
-
+#import "ZSHomeMapView.h"
 
 @interface ZSHomeViewController ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate>
 
@@ -17,6 +17,7 @@
     UIButton *leftTitleBtn;
     UIButton *rightTitltBtn;
     UIBarButtonItem *rightBarBtn;
+    UIButton *refreshBtn;   //  刷新位置
 }
 
 
@@ -132,10 +133,24 @@
 }
 
 
-//  刷新 当前位置
+//  刷新 当前位置     点击开始旋转
 - (void)refreshButtonClick {
     
     NSLog(@"刷新当前位置------");
+    
+    CABasicAnimation * rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"]; //让其在z轴旋转
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];//旋转角度
+    rotationAnimation.duration = 2; //旋转周期
+    rotationAnimation.cumulative = YES;//旋转累加角度
+    rotationAnimation.repeatCount = 10;//旋转次数
+    [refreshBtn.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    
+}
+
+
+//  数据请求结束  动画停止
+-(void)stopRotate {
+    [refreshBtn.layer removeAllAnimations];
 }
 
 
@@ -149,6 +164,10 @@
     if (indexPath.row == 5) {
         
         NSLog(@"查看更多");
+    }
+    if (indexPath.row == 1) {
+        
+        NSLog(@"这里是地图----");
     }
     
     NSLog(@"cell 被点击");
@@ -193,9 +212,9 @@
             [cell addSubview:label];
 
             
-//  刷新当前位置
+//  刷新位置按钮
             
-            UIButton *refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 40, 0, 30, 30)];
+            refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 40, 0, 30, 30)];
             [refreshBtn setImage:[UIImage imageNamed:@"home_header_refresh"] forState:UIControlStateNormal];
             [refreshBtn addTarget:self action:@selector(refreshButtonClick) forControlEvents:UIControlEventTouchDown];
             [cell addSubview:refreshBtn];
@@ -210,27 +229,34 @@
             nowAddress.textAlignment = NSTextAlignmentRight;
             [cell addSubview:nowAddress];
             
+    //  UITableViewCell选中不变色
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             
         }else if (indexPath.row == 1) {
             
   
 #warning 地图  待添加！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+            ZSHomeMapView *mapView = [[ZSHomeMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, KScreenHeight * 0.3)];
+            [cell addSubview:mapView];
             
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 80)];
-            label.text = @"这里是地图IndexPath.Row=1";
-            label.textAlignment = NSTextAlignmentCenter;
-            [cell addSubview:label];
+    //  UITableViewCell选中不变色
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             
             
 
 //  三个订单
         }else if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
             
+            
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 100, KScreenHeight * 0.09)];
             label.text = @"这里是其余的Cell";
             label.textAlignment = NSTextAlignmentCenter;
 
             [cell addSubview:label];
+            
+            
 
 //  查看更多
         }else if (indexPath.row == 5){
