@@ -151,33 +151,38 @@ CATransform3D rotationTransform1[PHOTONUM];
 - (void)alertActionClink:(NSInteger)tag {
    
     if (tag == 1000) {
-        [ZSAlertView showAlertViewWith:self title:@"安防系统" message:@"请选择服务项目" CallBackBlock:^(NSInteger btnIndex) {
+        [ZSAlertView showAlertViewWith:self imagename:@"home-prolist-icon1-hover.jpg" title:@"安防系统" message:@"请选择服务项目" CallBackBlock:^(NSInteger btnIndex) {
             self.integer = btnIndex;
             [self pushToView];
             NSLog(@"%ld", (long)btnIndex);
         } cancelButtonTitle:@"取消" destructiveButtonTitle:@"撤销" otherButtonTitles:@"闭门监控系统",@"防盗报警系统",@"门禁管理系统",@"停车场管理系统",@"电子巡更系统",nil];
     }else if (tag == 1001) {
-        [ZSAlertView showAlertViewWith:self title:@"UPS系统" message:@"请选择服务项目" CallBackBlock:^(NSInteger btnIndex) {
+        [ZSAlertView showAlertViewWith:self imagename:@"home-prolist-icon2-hover.jpg" title:@"UPS系统" message:@"请选择服务项目" CallBackBlock:^(NSInteger btnIndex) {
             self.integer = btnIndex;
             [self pushToView];
             NSLog(@"%ld", (long)btnIndex);
         } cancelButtonTitle:@"取消" destructiveButtonTitle:@"撤销" otherButtonTitles:@"UPS主机电池安装",@"UPS更换电池",@"UPS系统维护",nil];
     }else if (tag == 1002) {
-        [ZSAlertView showAlertViewWith:self title:@"音视频系统" message:@"请选择服务项目" CallBackBlock:^(NSInteger btnIndex) {
+        [ZSAlertView showAlertViewWith:self imagename:@"home-prolist-icon3-hover.jpg" title:@"音视频系统" message:@"请选择服务项目" CallBackBlock:^(NSInteger btnIndex) {
             self.integer = btnIndex;
             [self pushToView];
             NSLog(@"%ld", (long)btnIndex);
         } cancelButtonTitle:@"取消" destructiveButtonTitle:@"撤销" otherButtonTitles:@"音视频系统",@"多媒体投影系统",@"会议系统",@"舞台幕布系统",@"智能灯光系统",nil];
     }else if (tag == 1003) {
-        [ZSAlertView showAlertViewWith:self title:@"LED" message:@"请选择服务项目务" CallBackBlock:^(NSInteger btnIndex) {
+        [ZSAlertView showAlertViewWith:self imagename:@"home-prolist-icon4-hover.jpg" title:@"LED" message:@"请选择服务项目务" CallBackBlock:^(NSInteger btnIndex) {
             self.integer = btnIndex;
             [self pushToView];
             NSLog(@"%ld", (long)btnIndex);
         } cancelButtonTitle:@"取消" destructiveButtonTitle:@"撤销"  otherButtonTitles:@"立柱屏安装维护",@"室外挂墙屏安装维护",@"室内挂墙屏安装维护",nil];
     }else {
-        [ZSAlertView showAlertViewWith:self title:@"待开放" message:@"请选择服务项目务" CallBackBlock:^(NSInteger btnIndex) {
+        [ZSAlertView showAlertViewWith:self imagename:@"home-prolist-icon1-hover.jpg" title:@"待开放" message:@"请选择服务项目务" CallBackBlock:^(NSInteger btnIndex) {
+            
+            
+            
             self.integer = btnIndex;
             [self pushToView];
+        
+            
             NSLog(@"%ld", (long)btnIndex);
         } cancelButtonTitle:@"取消" destructiveButtonTitle:@"撤销" otherButtonTitles:nil];
     }
