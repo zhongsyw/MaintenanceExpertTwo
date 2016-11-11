@@ -117,7 +117,7 @@
                                   @"http://img3.iqilu.com/data/attachment/forum/201308/21/192654ai88zf6zaa60zddo.jpg"
                                   ];
     
-    SDCycleScrollView *headSV = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight*0.209) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    SDCycleScrollView *headSV = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight*0.209 ) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     headSV.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     headSV.pageDotImage = [UIImage imageNamed:@"pageControlDot"];

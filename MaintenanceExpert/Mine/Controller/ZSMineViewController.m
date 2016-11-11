@@ -167,7 +167,7 @@
 {
     
     NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    NSLog(@"username%@",username);
+   // NSLog(@"username%@",username);
 
     /**
      *  登录完成之后数据显示
@@ -400,7 +400,7 @@
    // NSLog(@"%f,%f",self.waveView.height,self.tableView.tableHeaderView.height);
  
     NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    NSLog(@"username%@",username);
+    //NSLog(@"username%@",username);
     
     if (username != nil)
     {

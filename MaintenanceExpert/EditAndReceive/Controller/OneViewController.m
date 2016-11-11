@@ -63,7 +63,7 @@ CATransform3D rotationTransform1[PHOTONUM];
      */
     [self initArray];
     
-    UIImageView *backview = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ABDD62AAB141FDD9D79E582DD1E47311.jpg"]];
+    UIImageView *backview = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"IMG_0255"]];
     backview.frame = self.view.frame;
     backview.center = CGPointMake(backview.center.x, backview.center.y - 10);
     
@@ -79,7 +79,7 @@ CATransform3D rotationTransform1[PHOTONUM];
         float tmpy =  centery + RADIUS*cos(2.0*M_PI *i/PHOTONUM);
         float tmpx =	centerx - RADIUS*sin(2.0*M_PI *i/PHOTONUM);
         myimgeview *addview1 =	[[myimgeview alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@%d",PHOTOSTRING,i]] text:[textArray objectAtIndex:i]];
-        addview1.frame = CGRectMake(0.0, 0.0,120,140);
+        addview1.frame = CGRectMake(0.0, 0.0,120.0,140.0);
         [addview1 setdege:self];
         addview1.tag = TAGSTART + i;
         addview1.center = CGPointMake(tmpx,tmpy);
@@ -337,7 +337,7 @@ CATransform3D rotationTransform1[PHOTONUM];
     [cancelBtn setFrame:CGRectMake(5, KScreenHeight - 50 , KScreenWidth - 10, 50)];
     [cancelBtn setTitle:@"取   消" forState:UIControlStateNormal];
     [self.view addSubview:cancelBtn];
-    cancelBtn.backgroundColor = [UIColor blueColor];
+    cancelBtn.backgroundColor = [UIColor orangeColor];
     cancelBtn.layer.cornerRadius = 10;
     [cancelBtn addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
 }
