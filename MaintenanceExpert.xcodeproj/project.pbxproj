@@ -11,6 +11,7 @@
 		300061DD1DD0542C000D1BD5 /* TwoDetailsTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 300061DC1DD0542C000D1BD5 /* TwoDetailsTabViewCell.m */; };
 		300061E01DD054FF000D1BD5 /* TwoPayTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300061DF1DD054FF000D1BD5 /* TwoPayTypeViewController.m */; };
 		305EA8D11DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 305EA8D01DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle */; };
+		30C772541DD58A2200BD3186 /* ZSMapAroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C772531DD58A2200BD3186 /* ZSMapAroundViewController.m */; };
 		30D39C951DCC5FBF002B4801 /* ZSHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D39C941DCC5FBF002B4801 /* ZSHomeTableViewCell.m */; };
 		30E3169D1DCB36D200B6ADA4 /* ZSLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E3169A1DCB36D200B6ADA4 /* ZSLeftTableViewCell.m */; };
 		30E3169E1DCB36D200B6ADA4 /* ZSRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E3169C1DCB36D200B6ADA4 /* ZSRightTableViewCell.m */; };
@@ -127,6 +128,8 @@
 		300061DE1DD054FF000D1BD5 /* TwoPayTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoPayTypeViewController.h; sourceTree = "<group>"; };
 		300061DF1DD054FF000D1BD5 /* TwoPayTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoPayTypeViewController.m; sourceTree = "<group>"; };
 		305EA8D01DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
+		30C772521DD58A2200BD3186 /* ZSMapAroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMapAroundViewController.h; sourceTree = "<group>"; };
+		30C772531DD58A2200BD3186 /* ZSMapAroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMapAroundViewController.m; sourceTree = "<group>"; };
 		30D39C931DCC5FBF002B4801 /* ZSHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeTableViewCell.h; sourceTree = "<group>"; };
 		30D39C941DCC5FBF002B4801 /* ZSHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeTableViewCell.m; sourceTree = "<group>"; };
 		30E316991DCB36D200B6ADA4 /* ZSLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSLeftTableViewCell.h; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 			children = (
 				5768C23A1DB5BAE50069B421 /* ZSHomeViewController.h */,
 				5768C23B1DB5BAE50069B421 /* ZSHomeViewController.m */,
+				30C772521DD58A2200BD3186 /* ZSMapAroundViewController.h */,
+				30C772531DD58A2200BD3186 /* ZSMapAroundViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -987,6 +992,11 @@
 					5768C1D51DB5B7CF0069B421 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 4GG3G7KSXK;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					5768C1EE1DB5B7CF0069B421 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1181,6 +1191,7 @@
 				300061DD1DD0542C000D1BD5 /* TwoDetailsTabViewCell.m in Sources */,
 				571069261DCB2E9A005481B4 /* ZSDetailOrderModel.m in Sources */,
 				572F8A141DC727E60076E2D8 /* STUI.m in Sources */,
+				30C772541DD58A2200BD3186 /* ZSMapAroundViewController.m in Sources */,
 				30F6C5A11DD1AA67009E766C /* ZLNoAuthorityViewController.m in Sources */,
 				30F6C5BB1DD1C9D5009E766C /* ZHCustomBtn.m in Sources */,
 				578B71281DC0AB2C00453A18 /* OneViewController.m in Sources */,
@@ -1329,7 +1340,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/zsyw/Desktop/MaintenanceExpertTwo/MaintenanceExpert/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = MaintenanceExpert/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsyw.MaintenanceExpert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1344,7 +1355,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = /Users/zsyw/Desktop/MaintenanceExpertTwo/MaintenanceExpert/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = MaintenanceExpert/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsyw.MaintenanceExpert;
 				PRODUCT_NAME = "$(TARGET_NAME)";

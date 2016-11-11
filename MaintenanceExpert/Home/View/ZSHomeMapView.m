@@ -41,6 +41,11 @@
         
         self.backgroundColor = [UIColor cyanColor];
         
+        [_locationManager requestWhenInUseAuthorization];
+        [_locationManager startUpdatingLocation];
+        [_mapView setShowsUserLocation:YES];
+        
+        
         [self creatMapVew];
         
     }
@@ -61,15 +66,15 @@
     
     
     
-    CLLocationCoordinate2D centerCoordinate;
-    centerCoordinate.latitude = 35.9097;
-    centerCoordinate.longitude = 115.3476;
-    MKCoordinateSpan span;
-    span.latitudeDelta = 5;
-    span.longitudeDelta = 5;
-    MKCoordinateRegion region;
-    region.center = centerCoordinate;
-    region.span = span;
+//    CLLocationCoordinate2D centerCoordinate;
+//    centerCoordinate.latitude = 35.9097;
+//    centerCoordinate.longitude = 115.3476;
+//    MKCoordinateSpan span;
+//    span.latitudeDelta = 5;
+//    span.longitudeDelta = 5;
+//    MKCoordinateRegion region;
+//    region.center = centerCoordinate;
+//    region.span = span;
     
     
     
@@ -127,8 +132,8 @@
 //    [self initLocationData];
     
     //    设置地图显示范围(如果不进行区域设置会自动显示区域范围并指定当前用户位置为地图中心点)
-    MKCoordinateSpan span=MKCoordinateSpanMake(0.01, 0.01);
-    MKCoordinateRegion region=MKCoordinateRegionMake(_mapView.region.center, span);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+    MKCoordinateRegion region = MKCoordinateRegionMake(_mapView.region.center, span);
     [_mapView setRegion:region animated:true];
     
 }
