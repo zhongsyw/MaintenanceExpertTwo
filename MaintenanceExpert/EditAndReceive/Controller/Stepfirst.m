@@ -90,7 +90,7 @@
     UIButton *nextbtn = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth / 3, 260, KScreenWidth / 3, 40)];
     [nextbtn setTitle:@"下 一 步" forState:UIControlStateNormal];
     nextbtn.layer.cornerRadius = 10;
-    nextbtn.backgroundColor = [UIColor blueColor];
+    nextbtn.backgroundColor = [UIColor cyanColor];
     [_tableview addSubview:nextbtn];
     [nextbtn addTarget:self action:@selector(clickToSteptwo) forControlEvents:UIControlEventTouchDown];
 }
