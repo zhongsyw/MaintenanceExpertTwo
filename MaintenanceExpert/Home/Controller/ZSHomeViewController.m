@@ -10,6 +10,7 @@
 #import "SDCycleScrollView.h"
 #import "ZSHomeTableViewCell.h"
 #import "ZSHomeMapView.h"
+#import "ZSMapAroundViewController.h"
 
 @interface ZSHomeViewController ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate>
 
@@ -18,6 +19,7 @@
     UIButton *rightTitltBtn;
     UIBarButtonItem *rightBarBtn;
     UIButton *refreshBtn;   //  刷新位置
+    ZSHomeMapView *mapView;
 }
 
 
@@ -48,8 +50,15 @@
     //    self.navigationController.navigationBarHidden = NO;
     
     [self creatNavigationView];
-    [self creatTableView];
+    
     [self creatTabelViewHeader];
+    
+    [self AroundMessage];
+    
+    [self creatMapView];
+    
+    [self creatTableView];
+    
 }
 
 
@@ -90,10 +99,11 @@
 
 - (void)creatTableView {
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, KScreenHeight * 0.509 + 30, KScreenWidth, KScreenHeight * 0.491 - 149) style:UITableViewStylePlain];
+    _tableView.showsVerticalScrollIndicator = NO;   //  关闭侧边滚动条
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.bounces = NO;
+//    _tableView.bounces = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;  //  设置分割线
     [self.view addSubview:_tableView];
 }
@@ -111,10 +121,54 @@
     
     headSV.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
     headSV.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
-    headSV.imageURLStringsGroup = imagesURLStrings;
-    _tableView.tableHeaderView = headSV;
+//    headSV.imageURLStringsGroup = imagesURLStrings;
+    //    _tableView.tableHeaderView = headSV;
+    [self.view addSubview:headSV];
+    
+    //  延迟加载图片
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        headSV.imageURLStringsGroup = imagesURLStrings;
+    });
     
 }
+
+
+//  附近的信息
+- (void)AroundMessage {
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, KScreenHeight*0.209, 150, 30)];
+    label.text = @"附近的信息";
+    [label setFont:[UIFont systemFontOfSize:15]];
+    [self.view addSubview:label];
+    
+    //  刷新位置按钮
+    
+    refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 40, KScreenHeight*0.209, 30, 30)];
+    [refreshBtn setImage:[UIImage imageNamed:@"home_header_refresh"] forState:UIControlStateNormal];
+    [refreshBtn addTarget:self action:@selector(refreshButtonClick) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:refreshBtn];
+    
+    //  当前位置
+    
+    UILabel *nowAddress = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth / 2 - 40, KScreenHeight*0.209, KScreenWidth / 2, 30)];
+    nowAddress.text = @"敦化路160号华仁丶欧典商苑";
+    nowAddress.textColor = [UIColor grayColor];
+    [nowAddress setFont:[UIFont systemFontOfSize:12]];
+    nowAddress.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:nowAddress];
+    
+    
+}
+
+
+//  加载地图
+- (void)creatMapView {
+    
+    mapView = [[ZSHomeMapView alloc] initWithFrame:CGRectMake(0, KScreenHeight * 0.209 + 30, self.view.frame.size.width, KScreenHeight * 0.3)];
+    [self.view addSubview:mapView];
+    
+}
+
 
 
 - (void)leftTitleBtnClick {
@@ -161,13 +215,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 #warning 查看更多，跳转到另一个页面
-    if (indexPath.row == 5) {
+    if (indexPath.row == 3) {
         
         NSLog(@"查看更多");
-    }
-    if (indexPath.row == 1) {
         
-        NSLog(@"这里是地图----");
+        ZSMapAroundViewController *mapAroundVC = [[ZSMapAroundViewController alloc] init];
+        
+        [self.navigationController pushViewController:mapAroundVC animated:YES];
+        
+        
     }
     
     NSLog(@"cell 被点击");
@@ -175,13 +231,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0) {
-        
-        return 30;
-    }else if (indexPath.row == 1) {
-        
-        return KScreenHeight * 0.3;
-    }
+    
+    
     
     return KScreenHeight * 0.09;
 }
@@ -190,13 +241,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 6;
+    return 4;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *identifier = @"HomeTableVieCell";
+    static NSString *identifier = @"TableVieCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
@@ -204,62 +255,13 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
-        if (indexPath.row == 0) {
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 150, 30)];
-            label.text = @"附近的信息";
-            [label setFont:[UIFont systemFontOfSize:15]];
-            [cell addSubview:label];
-
-            
-//  刷新位置按钮
-            
-            refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 40, 0, 30, 30)];
-            [refreshBtn setImage:[UIImage imageNamed:@"home_header_refresh"] forState:UIControlStateNormal];
-            [refreshBtn addTarget:self action:@selector(refreshButtonClick) forControlEvents:UIControlEventTouchDown];
-            [cell addSubview:refreshBtn];
+        if (indexPath.row < 3){
             
             
-//  当前位置
+            cell = [[ZSHomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             
-            UILabel *nowAddress = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth / 2 - 40, 0, KScreenWidth / 2, 30)];
-            nowAddress.text = @"敦化路160号华仁丶欧典商苑";
-            nowAddress.textColor = [UIColor grayColor];
-            [nowAddress setFont:[UIFont systemFontOfSize:12]];
-            nowAddress.textAlignment = NSTextAlignmentRight;
-            [cell addSubview:nowAddress];
-            
-    //  UITableViewCell选中不变色
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            
-        }else if (indexPath.row == 1) {
-            
-  
-#warning 地图  待添加！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-            ZSHomeMapView *mapView = [[ZSHomeMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, KScreenHeight * 0.3)];
-            [cell addSubview:mapView];
-            
-    //  UITableViewCell选中不变色
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            
-            
-
-//  三个订单
-        }else if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
-            
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 100, KScreenHeight * 0.09)];
-            label.text = @"这里是其余的Cell";
-            label.textAlignment = NSTextAlignmentCenter;
-
-            [cell addSubview:label];
-            
-            
-
 //  查看更多
-        }else if (indexPath.row == 5){
+        }else if (indexPath.row == 3){
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight * 0.044)];
             label.text = @"更多";
