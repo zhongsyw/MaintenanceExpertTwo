@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MineInfModel : NSObject
+@interface MineInfModel : NSObject<NSCoding>
 
-@property(nonatomic,copy)UIImage *usericon;
-@property(nonatomic,copy)NSString *nickname;
-@property(nonatomic,copy)NSString *signname;
+@property(nonatomic,assign)UIImage *usericon;
+@property(nonatomic,copy)NSString *username;
+@property(nonatomic,copy)NSString *moneynum;
+@property(nonatomic,copy)NSString *beizannum;
+@property(nonatomic,copy)NSString *guanzhunum;
+@property(nonatomic,copy)NSString *fensinum;
+
+@property(nonatomic,copy)NSString *Ordernum;
+@property(nonatomic,copy)NSString *Mymoney;
+//+(MineInfModel *)shareDetailInfo;
 
 @end

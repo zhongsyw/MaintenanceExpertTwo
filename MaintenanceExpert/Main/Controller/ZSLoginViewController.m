@@ -10,7 +10,7 @@
 #import "ZSNavigationController.h"
 #import "ZSRegisterViewController.h"
 #import "ZSChangePasswordVC.h"
-#import "XLWaveView.h"
+#import "MineInfModel.h"
 
 #import "UIView+ZSExtension.h"
 #import "UIbutton.h"
@@ -25,7 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-
+    
     
 }
 
@@ -186,8 +186,22 @@
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:_phone.text forKey:@"username"];
-        NSString *user = [userDefaults stringForKey:@"username"];
+  
+        MineInfModel *model = [[MineInfModel alloc]init];
+        model.username = @"老张";
+        model.usericon = nil;
+        model.moneynum = @"1000";
+        model.beizannum = @"6";
+        model.guanzhunum = @"6";
+        model.fensinum = @"6";
+        model.Ordernum = @"4";
+        model.Mymoney = @"1000000";
         
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
+        NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+        [users setObject:data forKey:@"USER"];
+        
+
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }else {

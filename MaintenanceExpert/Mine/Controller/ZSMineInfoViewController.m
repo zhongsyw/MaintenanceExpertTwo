@@ -100,13 +100,13 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@",_array[indexPath.row]];
     if (indexPath.row == 1) {
         
-        cell.detailTextLabel.text = self.model.nickname;
+        
         _nickNameCell = cell;
         
         return _nickNameCell;
     } if (indexPath.row == 2) {
         
-        cell.detailTextLabel.text = self.model.signname;
+        
         _signNameCell = cell;
         return _signNameCell;
     }else {
@@ -163,7 +163,7 @@
         
         self.nickNameCell.detailTextLabel.text = inputContent;
         
-        self.model.nickname = inputContent;
+        
         [_tableview reloadData];
         
     }];
@@ -179,7 +179,7 @@
     [BBInput showInput:^(NSString *inputContent) {
         
         self.signNameCell.detailTextLabel.text = inputContent;
-        self.model.signname = inputContent;
+        
         [_tableview reloadData];
         
     }];

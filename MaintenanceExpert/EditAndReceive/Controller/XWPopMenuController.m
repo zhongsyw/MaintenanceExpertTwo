@@ -221,7 +221,7 @@
             btn.layer.cornerRadius = 10;
             btn.backgroundColor = [UIColor clearColor];
             
-            UIImageView *bigw = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width / 2, 0, btn.frame.size.width / 2, btn.frame.size.height)];
+            UIImageView *bigw = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width / 2 , 0, btn.frame.size.width / 2, btn.frame.size.height)];
             bigw.image = [UIImage imageNamed:@"F467204C6EE07CCFAC51104A7AB4CCF2.jpg"];
             bigw.contentMode = UIViewContentModeScaleAspectFit;
             [btn addSubview:bigw];

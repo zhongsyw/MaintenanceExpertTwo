@@ -85,7 +85,6 @@
 		5768C2541DB5BD4C0069B421 /* ZSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5768C2531DB5BD4C0069B421 /* ZSTabBar.m */; };
 		576CBA741DCAC48300514182 /* myimgeview.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CBA731DCAC48300514182 /* myimgeview.m */; };
 		576CBA771DCAC4B200514182 /* ZSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CBA761DCAC4B200514182 /* ZSAlertView.m */; };
-		5771FDE51DBDE1B400003DCC /* XLWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FDE41DBDE1B400003DCC /* XLWaveView.m */; };
 		577832D81DD5B86F00BADA93 /* ZSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D01DD5B86F00BADA93 /* ZSHomeViewController.m */; };
 		577832D91DD5B86F00BADA93 /* ZSMapAroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D21DD5B86F00BADA93 /* ZSMapAroundViewController.m */; };
 		577832DA1DD5B86F00BADA93 /* ZSHomeMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D51DD5B86F00BADA93 /* ZSHomeMapView.m */; };
@@ -272,8 +271,6 @@
 		576CBA731DCAC48300514182 /* myimgeview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myimgeview.m; sourceTree = "<group>"; };
 		576CBA751DCAC4B200514182 /* ZSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAlertView.h; sourceTree = "<group>"; };
 		576CBA761DCAC4B200514182 /* ZSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAlertView.m; sourceTree = "<group>"; };
-		5771FDE31DBDE1B400003DCC /* XLWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLWaveView.h; sourceTree = "<group>"; };
-		5771FDE41DBDE1B400003DCC /* XLWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLWaveView.m; sourceTree = "<group>"; };
 		577832CF1DD5B86F00BADA93 /* ZSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeViewController.h; sourceTree = "<group>"; };
 		577832D01DD5B86F00BADA93 /* ZSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeViewController.m; sourceTree = "<group>"; };
 		577832D11DD5B86F00BADA93 /* ZSMapAroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMapAroundViewController.h; sourceTree = "<group>"; };
@@ -849,8 +846,6 @@
 		5771FDE21DBDE1B400003DCC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5771FDE31DBDE1B400003DCC /* XLWaveView.h */,
-				5771FDE41DBDE1B400003DCC /* XLWaveView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1130,7 +1125,6 @@
 				5768C2421DB5BB1E0069B421 /* ZSEditAndReceiveViewController.m in Sources */,
 				5768C2511DB5BC600069B421 /* UIImage+Image.m in Sources */,
 				5710691A1DCB0530005481B4 /* Stepfirst.m in Sources */,
-				5771FDE51DBDE1B400003DCC /* XLWaveView.m in Sources */,
 				30E316A41DCB37F800B6ADA4 /* HXTagsView.m in Sources */,
 				577832D81DD5B86F00BADA93 /* ZSHomeViewController.m in Sources */,
 				30F6C5AF1DD1B907009E766C /* ZSDetailsTableViewCell.m in Sources */,

@@ -90,6 +90,7 @@
     
     btn.layer.cornerRadius = 10;
     if (username != nil) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
         [btn setTitle:@"退出登录" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(outlogin) forControlEvents:UIControlEventTouchDown];
     }else {
@@ -159,6 +160,7 @@
 - (void)outlogin {
 
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+        
     [self.navigationController popViewControllerAnimated:YES];
     
 }

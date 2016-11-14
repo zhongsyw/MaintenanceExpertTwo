@@ -33,8 +33,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-
 }
 
 //  二级页面 显示 NavigationBar
@@ -52,13 +50,21 @@
     //    self.navigationController.navigationBarHidden = NO;
     
     [self creatNavigationView];
+    
     [self creatTabelViewHeader];
     
     [self AroundMessage];
     
-    [self creatMapView];
+    //[self creatMapView];
     
     [self creatTableView];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //获取Documents路径
+    NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString*path=[paths objectAtIndex:0];
+    NSLog(@"path:%@",path);
     
 }
 

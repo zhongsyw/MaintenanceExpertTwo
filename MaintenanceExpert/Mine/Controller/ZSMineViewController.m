@@ -8,13 +8,20 @@
 
 #import "ZSMineViewController.h"
 #import "ZSLoginViewController.h"
-#import "XLWaveView.h"
 #import "UIView+ZSExtension.h"
 #import "ZSSettingViewController.h"
-
+#import "MineInfModel.h"
 #define XLColor(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 @interface ZSMineViewController ()<UITableViewDataSource, UITableViewDelegate>
+{
+    UIView *_HeaderView;
+    UIImageView *_HeardrViewimage;
+    MineInfModel *_Model;
+    
+    NSString *_ordernum;
+    NSString *_mymoney;
+}
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -23,16 +30,24 @@
 
 /** 记录清空缓存的index */
 @property (nonatomic, strong) NSIndexPath *path;
+/** 赚了多少钱 */
+//@property (nonatomic, assign) UILabel *moneyLabel;
+/** 去分享 */
+@property (nonatomic, strong) UILabel *shareLabel;
 
-/** 头View */
-@property (nonatomic, weak) XLWaveView *waveView;
+@property (nonatomic, strong) UIButton *Loginbtn;
 
-/** 是否正在播放动画 */
-@property (nonatomic, assign, getter=isShowWave) BOOL showWave;
+/** 被赞 */
+@property (nonatomic, strong) UILabel *beizan;
+
+/** 被关注 */
+@property (nonatomic, strong) UILabel *guanzhu;
+
+/** 粉丝 */
+@property (nonatomic, strong) UILabel *fensi;
 
 
-@property (nonatomic,strong)UIButton *loginbtn;
-@property (nonatomic,strong)UILabel *shareLabel;
+@property (nonatomic,strong) UIView *lineView;
 
 @end
 
@@ -58,14 +73,14 @@
         //自己写要跳转到的控制器
         //yue[@"controller"] = [ZSLoginViewController class];
         
-        NSMutableDictionary *zsfamily = [NSMutableDictionary dictionary];
-        zsfamily[@"title"] = @"中数Family";
-        zsfamily[@"icon"] = @"share_platform_qqfriends";
-        //zsfamily[@"controller"] = [ZSLoginViewController class];
-        
-        NSMutableDictionary *help = [NSMutableDictionary dictionary];
-        help[@"title"] = @"帮助与反馈";
-        help[@"icon"] = @"share_platform_qqfriends";
+//        NSMutableDictionary *zsfamily = [NSMutableDictionary dictionary];
+//        zsfamily[@"title"] = @"中数Family";
+//        zsfamily[@"icon"] = @"share_platform_qqfriends";
+//        //zsfamily[@"controller"] = [ZSLoginViewController class];
+//        
+//        NSMutableDictionary *help = [NSMutableDictionary dictionary];
+//        help[@"title"] = @"帮助与反馈";
+//        help[@"icon"] = @"share_platform_qqfriends";
         //help[@"controller"] = [ZSLoginViewController class];
         
         NSMutableDictionary *cleanCache = [NSMutableDictionary dictionary];
@@ -78,25 +93,30 @@
         setting[@"controller"] = [ZSSettingViewController class];
         NSArray *section0 = @[dengji];
         NSArray *section1 = @[dingdan, yue];
-        NSArray *section2 = @[zsfamily, help];
-        NSArray *section3 = @[cleanCache];
-        NSArray *section4 = @[setting];
+       // NSArray *section2 = @[zsfamily, help];
+        NSArray *section2 = @[cleanCache];
+        NSArray *section3 = @[setting];
         
-        _dataList = [NSArray arrayWithObjects:section0,section1, section2, section3,section4, nil];
+        _dataList = [NSArray arrayWithObjects:section0,section1, section2, section3, nil];
     }
     return _dataList;
 }
 
-- (UITableView *)tableView{
+- (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:UITableViewStyleGrouped];
         _tableView.y = -20;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.bounces = NO;
+        
+        _tableView.tableHeaderView = _HeaderView;
+        _tableView.tableHeaderView.userInteractionEnabled = YES;
         [self.view addSubview:_tableView];
     }
+    
     return _tableView;
 }
 
@@ -104,12 +124,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-
 
     self.navigationController.navigationBarHidden = YES;
-    [self setupHeaderView];
     
+    _username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+
+    if (_username == nil) {
+        self.Loginbtn.hidden = NO;
+        
+    }else {
+        self.Loginbtn.hidden = YES;
+        
+    }
+    
+    [self userinfor];
     
     [self.tableView reloadData];
 }
@@ -123,35 +151,277 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationController.navigationBarHidden = YES;
+    
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSData *data = [user objectForKey:@"USER"];
+    MineInfModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    _Model = model;
+    
+    [self setupHeaderView];
+    
+    
 }
 
-- (void)loginBtnAndlab {
+- (void)userinfor {
     
-    self.loginbtn = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth / 11, 55, 100, 40)];
-    
-    [self.view addSubview: self.loginbtn];
-    
-    [self.loginbtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchDown];
-    
-   // self.loginbtn.backgroundColor = [UIColor blackColor];
-    
-    [self.view addSubview: self.loginbtn];
+    if (_username != nil) {
+
+        _moneyLabel.text = [NSString stringWithFormat:@"赚了%@元",_Model.moneynum];
+        _nameLabel.text = _Model.username;
+        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends-1"];
+        _beizannum.text = _Model.beizannum;
+        _guanzhunum.text = _Model.guanzhunum;
+        _fensinum.text = _Model.fensinum;
+        _ordernum = _Model.Ordernum;
+
+        _mymoney = _Model.Mymoney;
+    }else{
+
+        _nameLabel.text = @"";
+        _moneyLabel.text = @"赚了0.00元";
+        _icon = nil;
+        _beizannum.text = @"0";
+        _guanzhunum.text = @"0";
+        _fensinum.text = @"0";
+        _ordernum = @"0";
+        _mymoney = @"0";
+    }
 
     
-    self.shareLabel = [[UILabel alloc]initWithFrame:CGRectMake(180, 80, 80, 50)];
-    self.shareLabel.text = nil;
-    self.shareLabel.backgroundColor = [UIColor clearColor];
-    
-    
-    [self.view addSubview:self.shareLabel];
-    
-    UITapGestureRecognizer *taps = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(share:)];
-    self.shareLabel.userInteractionEnabled = YES;
-    [self.shareLabel addGestureRecognizer:taps];
-
-   
 }
 
+- (void)setupHeaderView {
+    _HeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight / 3)];
+    _HeaderView.userInteractionEnabled = YES;
+    _HeardrViewimage = [[UIImageView alloc]initWithFrame:_HeaderView.frame];
+    _HeardrViewimage.image = [UIImage imageNamed:@"93S58PICcXy_1024.jpg"];
+    _HeardrViewimage.contentMode = UIViewContentModeScaleAspectFill;
+    [_HeaderView addSubview:_HeardrViewimage];
+    
+    [self createsubview];
+}
+
+- (void)createsubview {
+    
+    [self createnamelabel];
+    [self createmoneylabel];
+    [self createicon];
+    [self createsharelabel];
+    
+    [self createbeizan];
+    [self createbeizannum];
+    
+    [self createguanzhu];
+    [self createguanzhunum];
+    
+    [self createfensi];
+    [self createfensinum];
+    
+    [self createline];
+    
+    
+}
+
+
+/**
+ *
+ * 个人信息控件
+ */
+- (void)createnamelabel {
+    
+    _nameLabel = [[UILabel alloc] init];
+    
+    _nameLabel.numberOfLines = 0;
+
+    _nameLabel.text = _Model.username;
+    
+    _nameLabel.textColor = [UIColor whiteColor];
+    
+    [_HeardrViewimage addSubview:_nameLabel];
+    
+    _nameLabel.sd_layout.leftSpaceToView(_HeardrViewimage,KScreenWidth / 10)
+    .topSpaceToView(_HeardrViewimage,44)
+    .heightIs(40)
+    .widthIs(200);
+    _nameLabel.font = [UIFont systemFontOfSize:30];
+    _nameLabel.textAlignment = NSTextAlignmentLeft;
+    _nameLabel.userInteractionEnabled = YES;
+    
+    _Loginbtn = [[UIButton alloc]initWithFrame:CGRectMake( KScreenWidth / 10, 44, 100, 40)];
+
+    [_Loginbtn setTitle:@"登 录" forState:UIControlStateNormal];
+    _Loginbtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [_Loginbtn.titleLabel setFont:[UIFont systemFontOfSize:30 weight:5]];
+    [_Loginbtn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchDown];
+    _Loginbtn.backgroundColor = [UIColor clearColor];
+    [_HeaderView addSubview:_Loginbtn];
+  
+}
+- (void)createmoneylabel {
+    _moneyLabel = [[UILabel alloc]init];
+    _moneyLabel.textAlignment = NSTextAlignmentLeft;
+    _moneyLabel.numberOfLines = 0;
+
+    _moneyLabel.textColor = [UIColor whiteColor];
+    [_HeaderView addSubview:_moneyLabel];
+    
+    _moneyLabel.sd_layout.leftEqualToView(self.nameLabel)
+    .topSpaceToView(self.nameLabel,0)
+    .heightIs(30)
+    .widthIs(130);
+    _moneyLabel.font = [UIFont systemFontOfSize:15];
+
+}
+- (void)createicon {
+    _icon = [[UIImageView alloc] init];
+
+    if (_username != nil) {
+        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends-1"];
+    }else{
+        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends-1"];
+    }
+    
+    _icon.height = _icon.width = KScreenWidth/5;
+    _icon.layer.cornerRadius = _icon.width * 0.5;
+    _icon.layer.masksToBounds = YES;
+    _icon.contentMode = UIViewContentModeScaleAspectFill;
+    
+    [_HeaderView addSubview:_icon];
+    
+    _icon.sd_layout.topSpaceToView(_HeaderView,44)
+    .rightSpaceToView(_HeaderView,KScreenWidth / 10)
+    .heightIs(KScreenWidth/5)
+    .widthIs(KScreenWidth/5);
+    
+}
+- (void)createsharelabel {
+    _shareLabel = [[UILabel alloc]init];
+    _shareLabel.text = @"去炫耀";
+    _shareLabel.textColor = [UIColor blueColor];
+    _shareLabel.font = [UIFont systemFontOfSize:15];
+    
+    [_HeaderView addSubview:_shareLabel];
+    //[shareBtn addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchDown];
+    _shareLabel.sd_layout.leftSpaceToView(self.moneyLabel,0)
+    .topEqualToView(self.moneyLabel)
+    .bottomEqualToView(self.moneyLabel)
+    .rightSpaceToView(self.icon,0);
+
+}
+
+- (void)createbeizan {
+    _beizan = [[UILabel alloc] init];
+    
+    _beizan.numberOfLines = 0;
+    
+    _beizan.text = @"被赞数";
+    _beizan.textColor = [UIColor whiteColor];
+    
+    [_HeaderView addSubview:_beizan];
+    
+    _beizan.sd_layout.leftSpaceToView(_HeaderView,KScreenWidth / 10)
+    .bottomSpaceToView(_HeaderView,5)
+    .heightIs(25)
+    .widthIs(KScreenWidth * 0.8 /3);
+    _beizan.font = [UIFont systemFontOfSize:18];
+    _beizan.textAlignment = NSTextAlignmentCenter;
+}
+- (void)createbeizannum{
+    _beizannum = [[UILabel alloc] init];
+    
+    _beizannum.numberOfLines = 0;
+    
+    _beizannum.text = _Model.beizannum;
+    
+    _beizannum.textColor = [UIColor blackColor];
+    
+    [_HeaderView addSubview:_beizannum];
+    
+    _beizannum.sd_layout.leftEqualToView(self.beizan)
+    .bottomSpaceToView(self.beizan,0)
+    .heightIs(40)
+    .widthIs(KScreenWidth * 0.8 /3);
+    _beizannum.font = [UIFont systemFontOfSize:18];
+    _beizannum.textAlignment = NSTextAlignmentCenter;
+}
+
+- (void)createguanzhu {
+    _guanzhu = [[UILabel alloc] init];
+    
+    _guanzhu.numberOfLines = 0;
+    _guanzhu.text = @"关注数";
+    _guanzhu.textColor = [UIColor whiteColor];
+    
+    [_HeaderView addSubview:_guanzhu];
+    
+    _guanzhu.sd_layout.leftSpaceToView(self.beizan, 0)
+    .bottomEqualToView(self.beizan)
+    .topEqualToView(self.beizan)
+    .widthIs(KScreenWidth * 0.8 /3);
+    _guanzhu.font = [UIFont systemFontOfSize:18];
+    _guanzhu.textAlignment = NSTextAlignmentCenter;
+}
+- (void)createguanzhunum{
+    _guanzhunum = [[UILabel alloc] init];
+    
+    _guanzhunum.numberOfLines = 0;
+    
+    _guanzhunum.text = _Model.guanzhunum;
+    
+    _guanzhunum.textColor = [UIColor blackColor];
+    
+    [_HeaderView addSubview:_guanzhunum];
+    
+    _guanzhunum.sd_layout.leftSpaceToView(self.beizannum,0)
+    .bottomEqualToView(self.beizannum)
+    .topEqualToView(self.beizannum)
+    .widthIs(KScreenWidth * 0.8 /3);
+    _guanzhunum.font = [UIFont systemFontOfSize:18];
+    _guanzhunum.textAlignment = NSTextAlignmentCenter;
+
+}
+
+- (void)createfensi {
+    _fensi = [[UILabel alloc] init];
+    
+    _fensi.numberOfLines = 0;
+    _fensi.text = @"粉丝数";
+    _fensi.textColor = [UIColor whiteColor];
+    
+    [_HeaderView addSubview:_fensi];
+    
+    _fensi.sd_layout.leftSpaceToView(self.guanzhu, 0).bottomEqualToView(self.beizan).topEqualToView(self.beizan).widthIs(KScreenWidth * 0.8 /3);
+    _fensi.font = [UIFont systemFontOfSize:18];
+    _fensi.textAlignment = NSTextAlignmentCenter;
+
+}
+- (void)createfensinum {
+    _fensinum = [[UILabel alloc] init];
+    
+    _fensinum.numberOfLines = 0;
+    
+    _fensinum.text = _Model.fensinum;
+    
+    _fensinum.textColor = [UIColor blackColor];
+    
+    [_HeaderView addSubview:_fensinum];
+    
+    _fensinum.sd_layout.leftSpaceToView(self.guanzhunum,0).bottomEqualToView(self.beizannum).topEqualToView(self.beizannum).widthIs(KScreenWidth * 0.8 /3);
+    _fensinum.font = [UIFont systemFontOfSize:18];
+    _fensinum.textAlignment = NSTextAlignmentCenter;
+
+}
+
+- (void)createline {
+    _lineView = [[UIView alloc]init];
+    _lineView.backgroundColor = [UIColor grayColor];
+    [_HeaderView addSubview:_lineView];
+    _lineView.sd_layout.leftEqualToView(self.beizannum)
+    .rightEqualToView(self.fensinum)
+    .bottomSpaceToView(self.beizannum,1)
+    .heightIs(1);
+    
+}
 /**
  *
  *  @param taps 个人界面的 分享按钮
@@ -159,82 +429,14 @@
 - (void)share:(UITapGestureRecognizer *)taps {
     NSLog(@"去炫耀");
     
-    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+    
 }
-
-
-- (void)setupHeaderView
-{
-    
-    NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-   // NSLog(@"username%@",username);
-
-    /**
-     *  登录完成之后数据显示
-     */
-    if (username != nil)
-    {
-    XLWaveView *wave = [[XLWaveView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 270) Image:@"93S58PICcXy_1024.jpg" centerIcon:@"share_platform_qqfriends"];
-
-    wave.nameLabel.text = @"王欣誉";
-
-    wave.beizannum.text = @"18";
-
-    wave.guanzhunum.text = @"20";
-
-    wave.fensinum.text = @"2";
-   
-    wave.moneyLabel.text = @"在中数赚了1830.00元";
-    
-    self.waveView = wave;
-    
-    [self scrollViewDidScroll:self.tableView];
-        
-    [self.tableView addSubview:wave];
-
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth , wave.height)];
-    
-    self.loginbtn.hidden = YES;
-        
-    self.shareLabel.hidden = NO;
-        
-    }else{
-    
-        /**
-         登录界面的页面参数
-         
-         */
-    XLWaveView *wave = [[XLWaveView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 270) Image:@"93S58PICcXy_1024.jpg" centerIcon:@"share_platform_qqfriends"];
-    wave.nameLabel.text = @"登录/注册";
-    wave.moneyLabel.text = @"";
-    // wave.icon.image = [UIImage imageNamed:icon];//头像
-    wave.beizannum.text = @"0";
-    wave.guanzhunum.text = @"0";
-    wave.fensinum.text = @"0";
-    wave.moneyLabel.text = @"在中数赚了0.00元";
-       
-    self.waveView = wave;
-    
-    [self scrollViewDidScroll:self.tableView];
-    
-    [self.tableView addSubview:wave];
-    
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth , wave.height)];
-
-    [self loginBtnAndlab];
-   
-    self.shareLabel.hidden = YES;
-    }
-   
-}
-
-
 
 - (void)click {
     
     ZSLoginViewController *zslogin = [[ZSLoginViewController alloc]init];
     [self presentViewController:zslogin animated:YES completion:nil];
-    
+   
 }
 
 
@@ -249,7 +451,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        return 80;
+        return 90;
     }else {
         return 50;
     }
@@ -260,10 +462,13 @@
     return [self.dataList[section] count];
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *ID = @"mineCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -275,7 +480,7 @@
     
     if (indexPath.section == 0) {
         
-        UIImageView *im = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 80)];
+        UIImageView *im = [[UIImageView alloc]initWithFrame:CGRectMake(0, 10, KScreenWidth, 80)];
         im.image = [UIImage imageNamed:@"E53C392C-4434-4D0F-8E14-74E6DEF83AA7"];
         im.contentMode = UIViewContentModeScaleAspectFill;
         
@@ -287,44 +492,19 @@
         cell.imageView.image = [UIImage imageNamed:dict[@"icon"]];
     }
 
-    NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    if (username != nil)
-    {
         switch (indexPath.section) {
             case 1:
                 if (indexPath.row == 0) {
-                    cell.detailTextLabel.text = @"4";
+                    cell.detailTextLabel.text = _ordernum;
                 }
                 if (indexPath.row == 1) {
-                    cell.detailTextLabel.text = @"￥160000";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"￥%@",_mymoney];
                 }
                 break;
                 
             default:
                 break;
         }
-        
-
-    }else{
-        switch (indexPath.section) {
-            case 1:
-                if (indexPath.row == 0) {
-                    cell.detailTextLabel.text = @"0";
-                }
-                if (indexPath.row == 1) {
-                    cell.detailTextLabel.text = @"￥0";
-                }
-                break;
-                
-            default:
-                break;
-        }
-        
-
-        
-        
-    }
-
     
     
     cell.selected = YES;
@@ -341,15 +521,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
     if (self.dataList[indexPath.section][indexPath.row][@"controller"]){
         UIViewController *vc = [[self.dataList[indexPath.section][indexPath.row][@"controller"] alloc] init];
         
         
             vc.title = self.dataList[indexPath.section][indexPath.row][@"title"];
             
-            //vc.view.backgroundColor = XLColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255));
-        //[self presentViewController:vc animated:YES completion:nil];
         [self.navigationController pushViewController:vc animated:YES];
         
         
@@ -361,68 +538,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return !section ? 1 : CGFLOAT_MIN;
 }
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-    if (self.isShowWave) {
-        [self.waveView starWave];
-    }
-}
-
-- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    CGFloat offsetY = scrollView.contentOffset.y;
-    
-    if (fabs(offsetY) > 20) {
-        self.showWave = YES;
-    }
-    else {
-        self.showWave = NO;
-    }
-    
-    
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
-    [self.waveView stopWave];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    CGFloat offsetY = scrollView.contentOffset.y;
-    
-    if (offsetY < 0) {
-        self.waveView.frame = CGRectMake(offsetY/2, offsetY, KScreenWidth - offsetY, 270 - offsetY);  // 修改头部的frame值就行了
-    }
-    
-   // NSLog(@"%f,%f",self.waveView.height,self.tableView.tableHeaderView.height);
- 
-    NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    //NSLog(@"username%@",username);
-    
-    if (username != nil)
-    {
-        self.loginbtn.hidden = YES;
-        self.shareLabel.hidden = NO;
-
-       
-    }else{
-        
-        if (offsetY >= 70) {
-            self.loginbtn.hidden = YES;
-            self.shareLabel.hidden = YES;
-
-        }else {
-            self.loginbtn.hidden = NO;
-            self.shareLabel.hidden = YES;
-
-        }
-    }
-}
-
-
 
 
 
