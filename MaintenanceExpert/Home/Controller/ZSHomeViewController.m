@@ -33,6 +33,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+
 }
 
 //  二级页面 显示 NavigationBar
@@ -50,7 +52,6 @@
     //    self.navigationController.navigationBarHidden = NO;
     
     [self creatNavigationView];
-    
     [self creatTabelViewHeader];
     
     [self AroundMessage];
@@ -99,7 +100,7 @@
 
 - (void)creatTableView {
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, KScreenHeight * 0.509 + 30, KScreenWidth, KScreenHeight * 0.491 - 149) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, KScreenHeight * 0.509 + 30, KScreenWidth, KScreenHeight * 0.491 - 143) style:UITableViewStylePlain];
     _tableView.showsVerticalScrollIndicator = NO;   //  关闭侧边滚动条
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -231,10 +232,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.row == 3) {
+        return  KScreenHeight * 0.09 * 0.7;
+    }else {
+        return KScreenHeight * 0.09;
+    }
     
-    
-    
-    return KScreenHeight * 0.09;
 }
 
 #pragma mark - UITableViewDataSource
