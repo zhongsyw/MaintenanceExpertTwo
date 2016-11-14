@@ -28,7 +28,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = NO;
-    self.navigationItem.title = [NSString stringWithFormat:@"%@(1/3)",self.title];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@(1/3)",self.titleStr];
     
 }
 
@@ -36,7 +36,7 @@
     
     [super viewDidLoad];
     
-    [self settitle];
+    [self setTitle];
     
    
     self.view.backgroundColor = [UIColor greenColor];
@@ -67,7 +67,7 @@
 /**
  *  导航标题
  */
-- (void)settitle {
+- (void)setTitle {
     
     self.integerone = [ZSDetailOrderModel shareDetailOrder].FirstIndex;//1000....1003
     self.integertwo = [ZSDetailOrderModel shareDetailOrder].SecondIndex;//2 3 4 5 6....
@@ -78,8 +78,8 @@
     NSMutableArray *array3 = [[NSMutableArray alloc]initWithObjects:@"立柱屏安装维护",@"室外挂墙屏安装维护",@"室内挂墙屏安装维护", nil];
     
     _detailArray = [[NSMutableArray alloc]initWithObjects:array0,array1,array2,array3, nil];
-    self.title = [NSString stringWithFormat:@"%@",_detailArray[self.integerone - 1000][self.integertwo - 2]];
-    [ZSDetailOrderModel shareDetailOrder].NavTitle = self.title;
+    self.titleStr = [NSString stringWithFormat:@"%@",_detailArray[self.integerone - 1000][self.integertwo - 2]];
+    [ZSDetailOrderModel shareDetailOrder].NavTitle = self.titleStr;
 }
 
 /**

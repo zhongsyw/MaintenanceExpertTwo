@@ -35,13 +35,29 @@
 
 - (void)creatView {
     
+    [self creatBackBtn];
     [self phoneNumber];
     [self messageNumber];
     [self passwordNumber];
     [self nextStepOfBtn];
 }
 
+- (void)creatBackBtn {
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.backgroundColor = [UIColor cyanColor];
+    backBtn.frame = CGRectMake(10, 40, 60, 30);
+    [backBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(registerBackBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:backBtn];
+}
 
+
+- (void)registerBackBtnClick {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 //  手机号
 - (void)phoneNumber {
@@ -187,7 +203,8 @@
     [_nextStepBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
 #warning 单击并移出按钮范围 进入工程师界面，单击 进入客户界面
     [_nextStepBtn addTarget:self action:@selector(tabButtonTapped:forEvent:) forControlEvents:UIControlEventTouchDown];
-    [_nextStepBtn addTarget:self action:@selector(repeatBtnTapped:forEvent:) forControlEvents:UIControlEventTouchDownRepeat];    [self.view addSubview:_nextStepBtn];
+//    [_nextStepBtn addTarget:self action:@selector(repeatBtnTapped:forEvent:) forControlEvents:UIControlEventTouchDownRepeat];
+    [self.view addSubview:_nextStepBtn];
     
     _nextStepBtn.sd_layout
     .leftSpaceToView(self.view, 78)
@@ -260,18 +277,19 @@
     [self performSelector:@selector(btnOfRegistration:) withObject:sender afterDelay:0.2];
 }
 //  Two
-- (void)repeatBtnTapped:(UIButton *)sender forEvent:(UIEvent *)event {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(btnOfRegistration:) object:sender];
-    // 延长0.2 秒
-    [self performSelector:@selector(btnOfDoubleTouch:) withObject:sender afterDelay:0.2];
-}
+//- (void)repeatBtnTapped:(UIButton *)sender forEvent:(UIEvent *)event {
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(btnOfRegistration:) object:sender];
+//    // 延长0.2 秒
+//    [self performSelector:@selector(btnOfDoubleTouch:) withObject:sender afterDelay:0.2];
+//}
 
 //  注 册 按 钮 方法
 - (void)btnOfRegistration:(NSNumber* )number {
     
     ZSRegisterCustomerVC* custormerVC = [[ZSRegisterCustomerVC alloc] init];
     
-    [self.navigationController pushViewController:custormerVC animated:YES];
+//    [self.navigationController pushViewController:custormerVC animated:YES];
+    [self presentViewController:custormerVC animated:YES completion:nil];
     
 }
 #warning 单击并移出按钮范围 进入工程师界面，单击 进入客户界面

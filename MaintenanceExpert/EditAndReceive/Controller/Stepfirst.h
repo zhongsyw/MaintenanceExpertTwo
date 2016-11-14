@@ -13,6 +13,6 @@
 
 @property(nonatomic,assign)NSInteger integerone;
 @property(nonatomic,assign)NSInteger integertwo;
-@property(nonatomic,copy)NSString * title;;
+@property(nonatomic,copy)NSString * titleStr;
 
 @end

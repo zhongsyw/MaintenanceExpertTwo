@@ -7,12 +7,12 @@
 //
 
 #import "ZSHomeViewController.h"
-#import "SDCycleScrollView.h"
+#import "XRCarouselView.h"
 #import "ZSHomeTableViewCell.h"
 #import "ZSHomeMapView.h"
 #import "ZSMapAroundViewController.h"
 
-@interface ZSHomeViewController ()<UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate>
+@interface ZSHomeViewController ()<UITableViewDelegate, UITableViewDataSource,XRCarouselViewDelegate>
 
 {
     UIButton *leftTitleBtn;
@@ -22,7 +22,7 @@
     ZSHomeMapView *mapView;
 }
 
-
+@property (strong, nonatomic) XRCarouselView *carouselView;
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
@@ -52,11 +52,12 @@
     //    self.navigationController.navigationBarHidden = NO;
     
     [self creatNavigationView];
-    [self creatTabelViewHeader];
+    
+    [self creatScrollHeaderView];
     
     [self AroundMessage];
     
-    [self creatMapView];
+//    [self creatMapView];
     
     [self creatTableView];
     
@@ -110,26 +111,54 @@
 }
 
 //  轮播图
-- (void)creatTabelViewHeader {
+- (void)creatScrollHeaderView {
     
-    NSArray *imagesURLStrings = @[
-                                  @"http://img2.3lian.com/2014/c7/12/d/77.jpg",
-                                  @"http://img2.pconline.com.cn/pconline/0706/19/1038447_34.jpg",
-                                  @"http://img3.iqilu.com/data/attachment/forum/201308/21/192654ai88zf6zaa60zddo.jpg"
-                                  ];
+    NSArray *imageArr = @[
+                          @"http://img2.3lian.com/2014/c7/12/d/77.jpg",
+                          @"http://img2.pconline.com.cn/pconline/0706/19/1038447_34.jpg",
+                          @"http://img3.iqilu.com/data/attachment/forum/201308/21/192654ai88zf6zaa60zddo.jpg",
+                          @"http://img06.tooopen.com/images/20160724/tooopen_sy_171572235394.jpg"
+                          ];
     
-    SDCycleScrollView *headSV = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight*0.209 ) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    //    NSArray *describeArray = @[@"网络图片", @"本地图片", @"网络动态图", @"本地动态图"];
     
-    headSV.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
-    headSV.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
-//    headSV.imageURLStringsGroup = imagesURLStrings;
-    //    _tableView.tableHeaderView = headSV;
-    [self.view addSubview:headSV];
+    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight*0.21)];
     
-    //  延迟加载图片
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        headSV.imageURLStringsGroup = imagesURLStrings;
-    });
+    //  设置占位图，需在设置数组图片之前设置，不设置则为默认占位图
+    _carouselView.placeholderImage = [UIImage imageNamed:@"XRPlaceholder"];
+    
+    //  设置图片数组以及图片描述文字
+    _carouselView.imageArray = imageArr;
+    //    _carouselView.describeArray = describeArray;
+    
+    
+    //  用代理处理图片点击
+    _carouselView.delegate = self;
+    
+    //  设置图片的停留时间，默认为5s，最少为2s
+    _carouselView.time = 2;
+    
+    //  设置分页控件的图片，不设置则为系统默认的
+    [_carouselView setPageImage:[UIImage imageNamed:@"pageControlDot"] andCurrentPageImage:[UIImage imageNamed:@"pageControlCurrentDot"]];
+    
+    //  设置分页控件的位置，默认为PositionBottomCenter
+    _carouselView.pagePosition = PositionBottomCenter;
+    
+    
+    /**
+     *  修改图片描述控件的外观，不需要修改的传nil
+     *
+     *  参数一 字体颜色，默认为白色
+     *  参数二 字体，默认为13号字体
+     *  参数三 背景颜色，默认为黑色半透明
+     */
+    //    UIColor *bgColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+    //    UIFont *font = [UIFont systemFontOfSize:15];
+    //    UIColor *textColor = [UIColor greenColor];
+    [_carouselView setDescribeTextColor:nil font:nil bgColor:nil];
+    
+    [self.view addSubview:_carouselView];
+    
     
 }
 
@@ -215,7 +244,6 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-#warning 查看更多，跳转到另一个页面
     if (indexPath.row == 3) {
         
         NSLog(@"查看更多");
@@ -278,13 +306,13 @@
 }
 
 
-#pragma mark - SDCycleScrollViewDelegate
+#pragma mark - XRCarouselViewDelegate
 
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+- (void)carouselView:(XRCarouselView *)carouselView clickImageAtIndex:(NSInteger)index {
     
-    NSLog(@"---点击了第%ld张图片", (long)index);
     
-//    [self.navigationController pushViewController:[NSClassFromString(@"DemoVCWithXib") new] animated:YES];
+    NSLog(@"点击了第%ld张图",index);
+    
 }
 
 

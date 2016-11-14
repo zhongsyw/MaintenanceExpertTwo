@@ -10,7 +10,6 @@
  */
 #import "TwoViewController.h"
 #import "TwoCollectionViewCell.h"
-#import "TwoCategoryViewController.h"
 #import "TwoDetailsViewController.h"
 #import "ZLShowBigImage.h"
 
@@ -138,6 +137,7 @@
     _titleTF = [[UITextField alloc] init];
     _titleTF.backgroundColor = [UIColor cyanColor];
     _titleTF.placeholder = @"标题";
+    [_titleTF setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
     _titleTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_titleTF setFont:[UIFont systemFontOfSize:15]];
     _titleTF.returnKeyType = UIReturnKeyDone;
@@ -169,10 +169,10 @@
     .heightRatioToView(upView, 0.33);
     
     descriptLabel = [[UILabel alloc] init];
-    descriptLabel.text = @" 请描述一下你的请求";
+    descriptLabel.text = @" 请详细描述一下您的需求";
     descriptLabel.enabled = NO;
     descriptLabel.font = [UIFont systemFontOfSize:15];
-    descriptLabel.textColor = [UIColor colorWithRed:77.0/255.0 green:77.0/255.0 blue:77.0/255.0 alpha:1];
+    descriptLabel.textColor = [UIColor grayColor];
     [_descriptTV addSubview:descriptLabel];
     descriptLabel.sd_layout.leftSpaceToView(_descriptTV, 0)
     .topSpaceToView(_descriptTV, 0)
@@ -218,7 +218,7 @@
 
     _addressLabel = [[UILabel alloc] init];
     //    _address.backgroundColor = [UIColor cyanColor];
-    _addressLabel.text = @"山东 青岛 市北区";
+    _addressLabel.text = @"山东青岛市北区敦化路000号高楼大厦";
     [_addressLabel setFont:[UIFont systemFontOfSize:13]];
     [upView addSubview:_addressLabel];
     _addressLabel.sd_layout.leftSpaceToView(imgV, 2)

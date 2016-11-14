@@ -1,29 +1,23 @@
 //
-//  ZSRegisterCustomerVC.m
+//  ZSHelpViewController.m
 //  MaintenanceExpert
 //
-//  Created by 中数 on 16/10/20.
+//  Created by 中数 on 16/11/14.
 //  Copyright © 2016年 ZSYW. All rights reserved.
 //
-//  客户注册界面
 
-#import "ZSRegisterCustomerVC.h"
+#import "ZSHelpViewController.h"
 
-
-@interface ZSRegisterCustomerVC () 
+@interface ZSHelpViewController ()
 
 @end
 
-@implementation ZSRegisterCustomerVC
+@implementation ZSHelpViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    self.view.backgroundColor = [UIColor cyanColor];
-    
+    // Do any additional setup after loading the view.
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

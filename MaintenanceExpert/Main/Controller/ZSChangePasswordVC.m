@@ -19,6 +19,7 @@
     self.view.backgroundColor = [UIColor cyanColor];
     
     [self createUI];
+    [self creatBackBtn];
     
     [self.navigationItem setTitle:@"修改密码"];
     
@@ -149,12 +150,31 @@
     [confirmBtn addTarget:self action:@selector(returnloginvc) forControlEvents:UIControlEventTouchDown];
 }
 
+
+- (void)creatBackBtn {
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.backgroundColor = [UIColor whiteColor];
+    backBtn.frame = CGRectMake(10, 40, 60, 30);
+    [backBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(changePassBackBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:backBtn];
+}
+
+
+- (void)changePassBackBtnClick {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 /**
  *  修改完毕，跳转登录页面
  */
 - (void)returnloginvc {
     
-      [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

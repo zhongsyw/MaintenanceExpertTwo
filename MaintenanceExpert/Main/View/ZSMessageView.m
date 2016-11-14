@@ -30,6 +30,8 @@
     
     [self initcontrols];
     
+    [self creatBackBtn];
+    
     [self createUI];
     ////@property(nonatomic,strong)UITextField *phoneTextfield;
     ////@property(nonatomic,strong)UITextField *messageTextfield;
@@ -57,6 +59,25 @@
     
     [self.view addSubview:_loginBtn];
 }
+
+//  取消按钮
+- (void)creatBackBtn {
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.backgroundColor = [UIColor whiteColor];
+    backBtn.frame = CGRectMake(10, 40, 60, 30);
+    [backBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(messageBackBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:backBtn];
+}
+
+
+- (void)messageBackBtnClick {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 /**
  *  搭建界面
@@ -137,6 +158,8 @@
     [_loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchDown];
     
 }
+
+
 
 /**
  *  登录

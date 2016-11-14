@@ -186,7 +186,7 @@
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:_phone.text forKey:@"username"];
-        NSString *user = [userDefaults stringForKey:@"username"];
+//        NSString *user = [userDefaults stringForKey:@"username"];
         
         
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -276,10 +276,11 @@
 
 - (void)clickyanzhengma {
     
-    //NSLog(@"yanzhengma");
+    NSLog(@"yanzhengma");
     
-   ZSMessageView *mes = [[ZSMessageView alloc]init];
-   [self.navigationController pushViewController:mes animated:YES];
+    ZSMessageView *mes = [[ZSMessageView alloc]init];
+//   [self.navigationController pushViewController:mes animated:YES];
+    [self presentViewController:mes animated:YES completion:nil];
     
 }
 
@@ -343,14 +344,16 @@
     
     ZSRegisterViewController *registerVC= [[ZSRegisterViewController alloc]init];
     
-    [self.navigationController pushViewController:registerVC animated:YES];
+//    [self.navigationController pushViewController:registerVC animated:YES];
+    [self presentViewController:registerVC animated:YES completion:nil];
     
 }
 
 - (void)Forget {
     //NSLog(@"跳转改密");
     ZSChangePasswordVC *changeVC = [[ZSChangePasswordVC alloc]init];
-    [self.navigationController pushViewController:changeVC animated:YES];
+//    [self.navigationController pushViewController:changeVC animated:YES];
+    [self presentViewController:changeVC animated:YES completion:nil];
 }
 
 /**
