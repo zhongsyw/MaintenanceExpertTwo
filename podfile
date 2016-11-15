@@ -4,5 +4,5 @@ pod 'SDAutoLayout','2.1.7'
 pod 'SDWebImage', '3.8'
 pod 'MJRefresh'
 pod 'Masonry'
-pod 'SDCycleScrollView','1.64'
+
 end

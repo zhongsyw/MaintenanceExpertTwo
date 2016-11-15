@@ -66,6 +66,12 @@
 		5753F0561DC824EC001D95D6 /* STPickerSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5753F0551DC824EC001D95D6 /* STPickerSingle.m */; };
 		57599A651DB9A520007BC223 /* ZSRegisterCustomerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57599A621DB9A520007BC223 /* ZSRegisterCustomerVC.m */; };
 		57599A661DB9A520007BC223 /* ZSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57599A641DB9A520007BC223 /* ZSRegisterViewController.m */; };
+		5765DB741DDA9EC0005AC05B /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5765DB711DDA9EC0005AC05B /* XRCarouselView.m */; };
+		5765DB751DDA9EC0005AC05B /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5765DB721DDA9EC0005AC05B /* XRPlaceholder.png */; };
+		5765DB7A1DDA9EFF005AC05B /* ZSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5765DB771DDA9EFF005AC05B /* ZSHomeViewController.m */; };
+		5765DB7B1DDA9EFF005AC05B /* ZSMapAroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5765DB791DDA9EFF005AC05B /* ZSMapAroundViewController.m */; };
+		5765DB801DDA9F20005AC05B /* ZSHomeMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5765DB7D1DDA9F20005AC05B /* ZSHomeMapView.m */; };
+		5765DB811DDA9F20005AC05B /* ZSHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5765DB7F1DDA9F20005AC05B /* ZSHomeTableViewCell.m */; };
 		5768C1E41DB5B7CF0069B421 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5768C1E21DB5B7CF0069B421 /* Main.storyboard */; };
 		5768C1E61DB5B7CF0069B421 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5768C1E51DB5B7CF0069B421 /* Assets.xcassets */; };
 		5768C1E91DB5B7CF0069B421 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5768C1E71DB5B7CF0069B421 /* LaunchScreen.storyboard */; };
@@ -85,10 +91,6 @@
 		5768C2541DB5BD4C0069B421 /* ZSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5768C2531DB5BD4C0069B421 /* ZSTabBar.m */; };
 		576CBA741DCAC48300514182 /* myimgeview.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CBA731DCAC48300514182 /* myimgeview.m */; };
 		576CBA771DCAC4B200514182 /* ZSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 576CBA761DCAC4B200514182 /* ZSAlertView.m */; };
-		577832D81DD5B86F00BADA93 /* ZSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D01DD5B86F00BADA93 /* ZSHomeViewController.m */; };
-		577832D91DD5B86F00BADA93 /* ZSMapAroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D21DD5B86F00BADA93 /* ZSMapAroundViewController.m */; };
-		577832DA1DD5B86F00BADA93 /* ZSHomeMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D51DD5B86F00BADA93 /* ZSHomeMapView.m */; };
-		577832DB1DD5B86F00BADA93 /* ZSHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 577832D71DD5B86F00BADA93 /* ZSHomeTableViewCell.m */; };
 		5787E8961DB866E40062249F /* ZSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5787E8951DB866E40062249F /* ZSLoginViewController.m */; };
 		5787E89F1DB8A9250062249F /* UIbutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5787E89E1DB8A9250062249F /* UIbutton.m */; };
 		578B70B51DC0775600453A18 /* ZSSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 578B70B41DC0775600453A18 /* ZSSettingViewController.m */; };
@@ -233,6 +235,17 @@
 		57599A621DB9A520007BC223 /* ZSRegisterCustomerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSRegisterCustomerVC.m; sourceTree = "<group>"; };
 		57599A631DB9A520007BC223 /* ZSRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSRegisterViewController.h; sourceTree = "<group>"; };
 		57599A641DB9A520007BC223 /* ZSRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSRegisterViewController.m; sourceTree = "<group>"; };
+		5765DB701DDA9EC0005AC05B /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
+		5765DB711DDA9EC0005AC05B /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
+		5765DB721DDA9EC0005AC05B /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
+		5765DB761DDA9EFF005AC05B /* ZSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeViewController.h; sourceTree = "<group>"; };
+		5765DB771DDA9EFF005AC05B /* ZSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeViewController.m; sourceTree = "<group>"; };
+		5765DB781DDA9EFF005AC05B /* ZSMapAroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMapAroundViewController.h; sourceTree = "<group>"; };
+		5765DB791DDA9EFF005AC05B /* ZSMapAroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMapAroundViewController.m; sourceTree = "<group>"; };
+		5765DB7C1DDA9F20005AC05B /* ZSHomeMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeMapView.h; sourceTree = "<group>"; };
+		5765DB7D1DDA9F20005AC05B /* ZSHomeMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeMapView.m; sourceTree = "<group>"; };
+		5765DB7E1DDA9F20005AC05B /* ZSHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeTableViewCell.h; sourceTree = "<group>"; };
+		5765DB7F1DDA9F20005AC05B /* ZSHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeTableViewCell.m; sourceTree = "<group>"; };
 		5768C1D61DB5B7CF0069B421 /* MaintenanceExpert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaintenanceExpert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5768C1E31DB5B7CF0069B421 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5768C1E51DB5B7CF0069B421 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -271,14 +284,6 @@
 		576CBA731DCAC48300514182 /* myimgeview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myimgeview.m; sourceTree = "<group>"; };
 		576CBA751DCAC4B200514182 /* ZSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAlertView.h; sourceTree = "<group>"; };
 		576CBA761DCAC4B200514182 /* ZSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAlertView.m; sourceTree = "<group>"; };
-		577832CF1DD5B86F00BADA93 /* ZSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeViewController.h; sourceTree = "<group>"; };
-		577832D01DD5B86F00BADA93 /* ZSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeViewController.m; sourceTree = "<group>"; };
-		577832D11DD5B86F00BADA93 /* ZSMapAroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMapAroundViewController.h; sourceTree = "<group>"; };
-		577832D21DD5B86F00BADA93 /* ZSMapAroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMapAroundViewController.m; sourceTree = "<group>"; };
-		577832D41DD5B86F00BADA93 /* ZSHomeMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeMapView.h; sourceTree = "<group>"; };
-		577832D51DD5B86F00BADA93 /* ZSHomeMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeMapView.m; sourceTree = "<group>"; };
-		577832D61DD5B86F00BADA93 /* ZSHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSHomeTableViewCell.h; sourceTree = "<group>"; };
-		577832D71DD5B86F00BADA93 /* ZSHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSHomeTableViewCell.m; sourceTree = "<group>"; };
 		5787E8941DB866E40062249F /* ZSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZSLoginViewController.h; path = ../Controller/ZSLoginViewController.h; sourceTree = "<group>"; };
 		5787E8951DB866E40062249F /* ZSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZSLoginViewController.m; path = ../Controller/ZSLoginViewController.m; sourceTree = "<group>"; };
 		5787E89D1DB8A9250062249F /* UIbutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIbutton.h; path = MaintenanceExpert/Main/Controller/UIbutton.h; sourceTree = SOURCE_ROOT; };
@@ -498,6 +503,56 @@
 			path = Single;
 			sourceTree = "<group>";
 		};
+		5765DB6C1DDA9EC0005AC05B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5765DB6D1DDA9EC0005AC05B /* Controller */,
+				5765DB6E1DDA9EC0005AC05B /* Tool */,
+				5765DB731DDA9EC0005AC05B /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5765DB6D1DDA9EC0005AC05B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5765DB761DDA9EFF005AC05B /* ZSHomeViewController.h */,
+				5765DB771DDA9EFF005AC05B /* ZSHomeViewController.m */,
+				5765DB781DDA9EFF005AC05B /* ZSMapAroundViewController.h */,
+				5765DB791DDA9EFF005AC05B /* ZSMapAroundViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5765DB6E1DDA9EC0005AC05B /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				5765DB6F1DDA9EC0005AC05B /* XRCarouselView */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		5765DB6F1DDA9EC0005AC05B /* XRCarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				5765DB701DDA9EC0005AC05B /* XRCarouselView.h */,
+				5765DB711DDA9EC0005AC05B /* XRCarouselView.m */,
+				5765DB721DDA9EC0005AC05B /* XRPlaceholder.png */,
+			);
+			path = XRCarouselView;
+			sourceTree = "<group>";
+		};
+		5765DB731DDA9EC0005AC05B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5765DB7C1DDA9F20005AC05B /* ZSHomeMapView.h */,
+				5765DB7D1DDA9F20005AC05B /* ZSHomeMapView.m */,
+				5765DB7E1DDA9F20005AC05B /* ZSHomeTableViewCell.h */,
+				5765DB7F1DDA9F20005AC05B /* ZSHomeTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5768C1CD1DB5B7CF0069B421 = {
 			isa = PBXGroup;
 			children = (
@@ -524,7 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				5768C2111DB5B9050069B421 /* Main */,
-				577832CD1DD5B86F00BADA93 /* Home */,
+				5765DB6C1DDA9EC0005AC05B /* Home */,
 				5768C2211DB5B9050069B421 /* Order */,
 				5768C22F1DB5B91F0069B421 /* EditAndReceive */,
 				5768C2171DB5B9050069B421 /* Message */,
@@ -850,38 +905,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		577832CD1DD5B86F00BADA93 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				577832CE1DD5B86F00BADA93 /* Controller */,
-				577832D31DD5B86F00BADA93 /* View */,
-			);
-			name = Home;
-			path = MaintenanceExpert/Home;
-			sourceTree = SOURCE_ROOT;
-		};
-		577832CE1DD5B86F00BADA93 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				577832CF1DD5B86F00BADA93 /* ZSHomeViewController.h */,
-				577832D01DD5B86F00BADA93 /* ZSHomeViewController.m */,
-				577832D11DD5B86F00BADA93 /* ZSMapAroundViewController.h */,
-				577832D21DD5B86F00BADA93 /* ZSMapAroundViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		577832D31DD5B86F00BADA93 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				577832D41DD5B86F00BADA93 /* ZSHomeMapView.h */,
-				577832D51DD5B86F00BADA93 /* ZSHomeMapView.m */,
-				577832D61DD5B86F00BADA93 /* ZSHomeTableViewCell.h */,
-				577832D71DD5B86F00BADA93 /* ZSHomeTableViewCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		EC63BC1B2D89A0A769E8CBA5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1015,6 +1038,7 @@
 				5768C1E61DB5B7CF0069B421 /* Assets.xcassets in Resources */,
 				5768C1E41DB5B7CF0069B421 /* Main.storyboard in Resources */,
 				57075D3D1DC31B9000693E85 /* BBInputView.xib in Resources */,
+				5765DB751DDA9EC0005AC05B /* XRPlaceholder.png in Resources */,
 				5753F04A1DC824A6001D95D6 /* area.plist in Resources */,
 				305EA8D11DD2BAEE00C33F41 /* ZLPhotoBrowser.bundle in Resources */,
 				30F6C59A1DD1AA67009E766C /* ZLPhotoActionSheet.xib in Resources */,
@@ -1094,7 +1118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				576CBA771DCAC4B200514182 /* ZSAlertView.m in Sources */,
-				577832DB1DD5B86F00BADA93 /* ZSHomeTableViewCell.m in Sources */,
+				5765DB811DDA9F20005AC05B /* ZSHomeTableViewCell.m in Sources */,
 				57075D401DC3205F00693E85 /* MineInfModel.m in Sources */,
 				30F6C5A21DD1AA67009E766C /* ZLPhotoActionSheet.m in Sources */,
 				5768C22C1DB5B9050069B421 /* AppDelegate.m in Sources */,
@@ -1126,12 +1150,12 @@
 				5768C2511DB5BC600069B421 /* UIImage+Image.m in Sources */,
 				5710691A1DCB0530005481B4 /* Stepfirst.m in Sources */,
 				30E316A41DCB37F800B6ADA4 /* HXTagsView.m in Sources */,
-				577832D81DD5B86F00BADA93 /* ZSHomeViewController.m in Sources */,
 				30F6C5AF1DD1B907009E766C /* ZSDetailsTableViewCell.m in Sources */,
+				5765DB7A1DDA9EFF005AC05B /* ZSHomeViewController.m in Sources */,
 				57075D3B1DC31B9000693E85 /* BBInput.m in Sources */,
 				572F8A131DC727E60076E2D8 /* STConst.m in Sources */,
-				577832D91DD5B86F00BADA93 /* ZSMapAroundViewController.m in Sources */,
 				30F6C5A01DD1AA67009E766C /* ZLCollectionCell.m in Sources */,
+				5765DB7B1DDA9EFF005AC05B /* ZSMapAroundViewController.m in Sources */,
 				5768C2481DB5BB390069B421 /* ZSMineViewController.m in Sources */,
 				576CBA741DCAC48300514182 /* myimgeview.m in Sources */,
 				5768C2361DB5B9AA0069B421 /* ZSTabBarController.m in Sources */,
@@ -1142,8 +1166,8 @@
 				30F6C5891DD1AA67009E766C /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				30E3169E1DCB36D200B6ADA4 /* ZSRightTableViewCell.m in Sources */,
 				30F6C5A81DD1AA67009E766C /* ZLShowBigImgViewController.m in Sources */,
-				577832DA1DD5B86F00BADA93 /* ZSHomeMapView.m in Sources */,
 				30E316AA1DCB384F00B6ADA4 /* TwoCategoryViewController.m in Sources */,
+				5765DB801DDA9F20005AC05B /* ZSHomeMapView.m in Sources */,
 				5753F0511DC824E7001D95D6 /* NSCalendar+ST.m in Sources */,
 				5768C2451DB5BB2C0069B421 /* ZSMessageViewController.m in Sources */,
 				30F6C59E1DD1AA67009E766C /* ToastUtils.m in Sources */,
@@ -1155,6 +1179,7 @@
 				57599A651DB9A520007BC223 /* ZSRegisterCustomerVC.m in Sources */,
 				30E3169D1DCB36D200B6ADA4 /* ZSLeftTableViewCell.m in Sources */,
 				5787E8961DB866E40062249F /* ZSLoginViewController.m in Sources */,
+				5765DB741DDA9EC0005AC05B /* XRCarouselView.m in Sources */,
 				30F6C5A31DD1AA67009E766C /* ZLPhotoBrowser.m in Sources */,
 				57599A661DB9A520007BC223 /* ZSRegisterViewController.m in Sources */,
 				5710691D1DCB054D005481B4 /* Stepsecond.m in Sources */,

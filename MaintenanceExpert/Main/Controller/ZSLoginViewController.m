@@ -45,12 +45,6 @@
     
     [self createUI];
 
-    
-    
-    
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
-//    self.navigationItem.backBarButtonItem = item;
-    
 }
 
 - (void)createUI {
@@ -177,12 +171,7 @@
     
     
     if ([self.phone.text isEqualToString:@"1"] && [self.secret.text isEqualToString:@"1"]) {
-//        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"提示"
-//                                                      message:@"正在登录"
-//                                                     delegate:self
-//                                            cancelButtonTitle:@"确定"
-//                                            otherButtonTitles:nil];
-//        [alert show];
+
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:_phone.text forKey:@"username"];
