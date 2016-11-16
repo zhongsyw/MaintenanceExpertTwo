@@ -30,6 +30,7 @@
     [aCoder encodeObject:self.fensinum forKey:@"fensinum"];
     [aCoder encodeObject:self.Ordernum forKey:@"Ordernum"];
     [aCoder encodeObject:self.Mymoney forKey:@"Mymoney"];
+    [aCoder encodeObject:self.MineInformation forKey:@"MineInformation"];
     
 }
 
@@ -44,6 +45,8 @@
         self.fensinum = [aDecoder decodeObjectForKey:@"fensinum"];
         self.Ordernum = [aDecoder decodeObjectForKey:@"Ordernum"];
         self.Mymoney = [aDecoder decodeObjectForKey:@"Mymoney"];
+        self.MineInformation = [aDecoder decodeObjectForKey:@"MineInformation"];
+
 
     }
     return self;

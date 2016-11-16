@@ -10,9 +10,18 @@
 #import "ZSLoginViewController.h"
 #import "ZSMineViewController.h"
 #import "ZSMineInfoViewController.h"
+#import "ZSFamilyViewController.h"
+#import "ZSHelpViewController.h"
+#import "MineInfModel.h"
 
-@interface ZSSettingViewController ()<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
+
+@interface ZSSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSString *_username;
+    UIButton *_btn;
+    MineInfModel *_Model;
+}
 @property(nonatomic,strong)UITableView *tableview;;
 
 
@@ -21,59 +30,26 @@
 @implementation ZSSettingViewController
 
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    
-//    NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-//    self.navigationController.navigationBarHidden = NO;
-//    
-//    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 24, KScreenWidth, 64) style:UITableViewStylePlain];
-//    _tableview.backgroundColor = [UIColor cyanColor];
-//    _tableview.delegate = self;
-//    _tableview.dataSource = self;
-//    
-//    [_tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-//    
-//    [self.view addSubview:_tableview];
-//    
-//    
-//    
-//    
-//    self.view.backgroundColor = [UIColor cyanColor];
-//    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, _tableview.frame.size.height + 32, KScreenWidth - 20, 40)];
-//    
-//    btn.layer.cornerRadius = 10;
-//    if (username != nil) {
-//        [btn setTitle:@"退出登录" forState:UIControlStateNormal];
-//        [btn addTarget:self action:@selector(outlogin) forControlEvents:UIControlEventTouchDown];
-//    }else {
-//        [btn setTitle:@"您还未登录" forState:UIControlStateNormal];
-//        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"提示"
-//                                                      message:@"您还未登录"
-//                                                     delegate:self
-//                                            cancelButtonTitle:@"返回"
-//                                            otherButtonTitles:nil];
-//        [alert show];
-//        
-//    }
-//    
-//    btn.tintColor = [UIColor whiteColor];
-//    btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-//    
-//    btn.backgroundColor = [UIColor orangeColor];
-//    
-//    [self.view addSubview:btn];
-//
-//    
-//}
+- (void)viewWillAppear:(BOOL)animated {
+    _username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+//    NSLog(@"%@",_username);
+    
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSData *data = [user objectForKey:@"USER"];
+    MineInfModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    _Model = model;
+    NSLog(@"%@",_Model.username);
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    self.navigationController.navigationBarHidden = NO;
     
-    NSString *username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    //_username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     
     
-        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(5, 24, KScreenWidth - 10, 64) style:UITableViewStylePlain];
+    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(5, 24, KScreenWidth - 10, 44 * 3) style:UITableViewStylePlain];
     
     _tableview.backgroundColor = [UIColor cyanColor];
     _tableview.delegate = self;
@@ -86,41 +62,26 @@
     
   
     self.view.backgroundColor = [UIColor cyanColor];
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, _tableview.frame.size.height + 32, KScreenWidth - 20, 40)];
+    _btn = [[UIButton alloc]initWithFrame:CGRectMake(10, _tableview.frame.size.height + 42, KScreenWidth - 20, 40)];
     
-    btn.layer.cornerRadius = 10;
-    if (username != nil) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
-        [btn setTitle:@"退出登录" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(outlogin) forControlEvents:UIControlEventTouchDown];
-    }else {
-        [btn setTitle:@"您还未登录" forState:UIControlStateNormal];
-        UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@"提示"
-                                                      message:@"您还未登录"
-                                                     delegate:self
-                                            cancelButtonTitle:@"返回"
-                                            otherButtonTitles:nil];
-        [alert show];
-        
-    }
+    _btn.layer.cornerRadius = 10;
     
-    btn.tintColor = [UIColor whiteColor];
-    btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    btn.backgroundColor = [UIColor orangeColor];
-    
-    [self.view addSubview:btn];
-    [self.view addSubview:_tableview];
 
+    _btn.tintColor = [UIColor whiteColor];
+    _btn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
+    _btn.backgroundColor = [UIColor orangeColor];
     
-    
+    [self.view addSubview:_btn];
+    [self.view addSubview:_tableview];
+   
 }
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return 3;
     
 }
 
@@ -128,8 +89,25 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = @"修改资料";
     
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"修改资料";
+
+        if (_username == nil) {
+            cell.textLabel.text = @"修改资料 (请先登录)";
+            [_btn setTitle:@"您还未登录" forState:UIControlStateNormal];
+        }else {
+            cell.textLabel.text = @"修改资料";
+            [_btn setTitle:@"退出登录" forState:UIControlStateNormal];
+            [_btn addTarget:self action:@selector(outlogin) forControlEvents:UIControlEventTouchDown];
+        }
+    }else if (indexPath.row == 1) {
+        cell.textLabel.text = @"关于中数运维";
+    }else{
+        cell.textLabel.text = @"帮助与反馈";
+    }
+    
+   
     cell.layer.cornerRadius = 5;
     
     return cell;
@@ -137,25 +115,28 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-  
-        ZSMineInfoViewController *zsm = [[ZSMineInfoViewController alloc]init];
-    
-    
-        [self.navigationController pushViewController:zsm animated:YES];
-    
+    if (indexPath.row == 0) {
+        if (_username != nil) {
+            ZSMineInfoViewController *zsm = [[ZSMineInfoViewController alloc]init];
+            [self.navigationController pushViewController:zsm animated:YES];
+        }else {
+            
+        }
+    }else if (indexPath.row == 1) {
+        ZSFamilyViewController *zsf = [[ZSFamilyViewController alloc]init];
+        [self.navigationController pushViewController:zsf animated:YES];
+    }else {
+        ZSHelpViewController *zsh = [[ZSHelpViewController alloc]init];
+        [self.navigationController pushViewController:zsh animated:YES];
+
+    }
+        
         [tableView deselectRowAtIndexPath:indexPath animated:NO]; 
    
 }
 
 
 
-//ALertView即将消失时的事件
--(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
 
 - (void)outlogin {
 

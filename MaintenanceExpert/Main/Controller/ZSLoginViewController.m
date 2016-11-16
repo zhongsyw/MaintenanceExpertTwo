@@ -174,7 +174,7 @@
 
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:_phone.text forKey:@"username"];
+        [userDefaults setObject:@"111111" forKey:@"username"];
   
         MineInfModel *model = [[MineInfModel alloc]init];
         model.username = @"老张";

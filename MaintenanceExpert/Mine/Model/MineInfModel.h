@@ -10,7 +10,7 @@
 
 @interface MineInfModel : NSObject<NSCoding>
 
-@property(nonatomic,assign)UIImage *usericon;
+@property(nonatomic,copy)UIImage *usericon;
 @property(nonatomic,copy)NSString *username;
 @property(nonatomic,copy)NSString *moneynum;
 @property(nonatomic,copy)NSString *beizannum;
@@ -19,6 +19,8 @@
 
 @property(nonatomic,copy)NSString *Ordernum;
 @property(nonatomic,copy)NSString *Mymoney;
-//+(MineInfModel *)shareDetailInfo;
+
+@property(nonatomic,copy)NSString *MineInformation;
+
 
 @end

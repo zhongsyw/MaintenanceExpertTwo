@@ -7,6 +7,7 @@
 //
 
 #import "ZSAlertView.h"
+#define  LGLAlertShowTime 1.0
 
 @implementation ZSAlertView
 // 单个或多个按钮
@@ -67,6 +68,35 @@
         //此时self指本类
         [self performSelector:@selector(dismissAlertController:) withObject:alertController afterDelay:1.0];
     }
+}
+// 有输入框
+
++ (void)showAlertTextFieldViewWith:(UIViewController *)viewController title:(NSString *)title message:(NSString *)message TextFeildCallBackBlock:(TextFieldCallBackBlock)textBlock cancelButtonTitle:(NSString *)cancelBtnTitle otherButtonTitles:(NSString *)otherBtnTitle {
+    
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"请输入昵称";
+        
+    }];
+    if (cancelBtnTitle.length) {
+        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:cancelBtnTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissAlertController:alertController];
+        }];
+        [alertController addAction:cancelAction];
+    }
+    if (otherBtnTitle.length) {
+        UIAlertAction * otherAction = [UIAlertAction actionWithTitle:otherBtnTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            textBlock([alertController.textFields firstObject].text);
+        }];
+        [alertController addAction:otherAction];
+    }
+    [viewController presentViewController:alertController animated:YES completion:nil];
+    //如果没有按钮，自动延迟消失
+    if (!cancelBtnTitle.length && !otherBtnTitle.length) {
+        //此时self指本类
+        [self performSelector:@selector(dismissAlertController:) withObject:alertController afterDelay:LGLAlertShowTime];
+    }
+    
 }
 
 // ======================================================================== ----- AlertView end----- ==================================================================================

@@ -386,17 +386,11 @@
     
     NSLog(@"选择地理位置");
 }
-
+#warning 价格点击事件
 //  价格的 点击事件
 - (void)praceTouchUpInside:(UITapGestureRecognizer *)recognizer {
     
-    [BBInput setDescTitle:@"请输入金额"];
-    [BBInput setMaxContentLength:10];
-    [BBInput setNormalContent:_priceLabel.text];
-    [BBInput showInput:^(NSString *inputContent) {
-        
-        _priceLabel.text = inputContent;
-    }];
+
 }
 
 //  维护的 点击事件

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MineInfModel.h"
+
 
 @interface ZSMineInfoViewController : UIViewController
-@property(nonatomic,strong)UIImageView *userIconone;
-@property(nonatomic,strong)MineInfModel *model;
 
 
+@property (nonatomic, strong) NSArray<ZLSelectPhotoModel *> *lastSelectMoldels;
+@property (strong, nonatomic) UICollectionView *collectionView;
+@property (strong, nonatomic) NSArray *arrDataSources;
+@property (strong, nonatomic) NSMutableArray *mutableArray;
 @end

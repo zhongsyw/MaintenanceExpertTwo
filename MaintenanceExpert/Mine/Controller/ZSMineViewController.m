@@ -11,6 +11,8 @@
 #import "UIView+ZSExtension.h"
 #import "ZSSettingViewController.h"
 #import "MineInfModel.h"
+#import "ZSBalanceViewController.h"
+
 #define XLColor(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 @interface ZSMineViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -70,18 +72,7 @@
         NSMutableDictionary *yue = [NSMutableDictionary dictionary];
         yue[@"title"] = @"我的余额";
         yue[@"icon"] = @"share_platform_qqfriends";
-        //自己写要跳转到的控制器
-        //yue[@"controller"] = [ZSLoginViewController class];
-        
-//        NSMutableDictionary *zsfamily = [NSMutableDictionary dictionary];
-//        zsfamily[@"title"] = @"中数Family";
-//        zsfamily[@"icon"] = @"share_platform_qqfriends";
-//        //zsfamily[@"controller"] = [ZSLoginViewController class];
-//        
-//        NSMutableDictionary *help = [NSMutableDictionary dictionary];
-//        help[@"title"] = @"帮助与反馈";
-//        help[@"icon"] = @"share_platform_qqfriends";
-        //help[@"controller"] = [ZSLoginViewController class];
+        yue[@"controller"] = [ZSBalanceViewController class];
         
         NSMutableDictionary *cleanCache = [NSMutableDictionary dictionary];
         cleanCache[@"title"] = @"清空缓存";
@@ -104,7 +95,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth , KScreenHeight) style:UITableViewStyleGrouped];
         _tableView.y = -20;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -137,9 +128,16 @@
         
     }
     
-    [self userinfor];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSData *data = [user objectForKey:@"USER"];
+    MineInfModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    _Model = model;
     
+    [self userinfor];
+
     [self.tableView reloadData];
+    
+   
 }
 
 
@@ -152,10 +150,7 @@
     
     self.navigationController.navigationBarHidden = YES;
     
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSData *data = [user objectForKey:@"USER"];
-    MineInfModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    _Model = model;
+    
     
     [self setupHeaderView];
     
@@ -167,16 +162,16 @@
     if (_username != nil) {
 
         _moneyLabel.text = [NSString stringWithFormat:@"赚了%@元",_Model.moneynum];
+        _icon.image = _Model.usericon;
         _nameLabel.text = _Model.username;
-        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends-1"];
         _beizannum.text = _Model.beizannum;
         _guanzhunum.text = _Model.guanzhunum;
         _fensinum.text = _Model.fensinum;
         _ordernum = _Model.Ordernum;
 
         _mymoney = _Model.Mymoney;
-    }else{
-
+    } else {
+        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends"];
         _nameLabel.text = @"";
         _moneyLabel.text = @"赚了0.00元";
         _icon = nil;
@@ -233,8 +228,6 @@
     
     _nameLabel.numberOfLines = 0;
 
-    _nameLabel.text = _Model.username;
-    
     _nameLabel.textColor = [UIColor whiteColor];
     
     [_HeardrViewimage addSubview:_nameLabel];
@@ -273,25 +266,18 @@
 
 }
 - (void)createicon {
-    _icon = [[UIImageView alloc] init];
-
-    if (_username != nil) {
-        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends-1"];
-    }else{
-        _icon.image = [UIImage imageNamed:@"share_platform_qqfriends-1"];
-    }
     
+    _icon = [[UIImageView alloc] init];
     _icon.height = _icon.width = KScreenWidth/5;
     _icon.layer.cornerRadius = _icon.width * 0.5;
     _icon.layer.masksToBounds = YES;
     _icon.contentMode = UIViewContentModeScaleAspectFill;
-    
     [_HeaderView addSubview:_icon];
-    
     _icon.sd_layout.topSpaceToView(_HeaderView,44)
-    .rightSpaceToView(_HeaderView,KScreenWidth / 10)
-    .heightIs(KScreenWidth/5)
-    .widthIs(KScreenWidth/5);
+                    .rightSpaceToView(_HeaderView,KScreenWidth / 10)
+                    .heightIs(KScreenWidth/5)
+                    .widthIs(KScreenWidth/5);
+    
     
 }
 - (void)createsharelabel {
@@ -469,6 +455,7 @@
     NSString *ID = @"mineCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -487,6 +474,7 @@
         [cell addSubview:im];
         } else
         {
+        cell.layer.cornerRadius = 10;
         NSDictionary *dict = self.dataList[indexPath.section][indexPath.row];
         cell.textLabel.text = dict[@"title"];
         cell.imageView.image = [UIImage imageNamed:dict[@"icon"]];
@@ -494,6 +482,7 @@
 
         switch (indexPath.section) {
             case 1:
+            
                 if (indexPath.row == 0) {
                     cell.detailTextLabel.text = _ordernum;
                 }
