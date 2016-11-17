@@ -39,17 +39,16 @@
     MineInfModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     _Model = model;
     NSLog(@"%@",_Model.username);
+    self.navigationController.navigationBarHidden = NO;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   self.navigationController.navigationBarHidden = NO;
-    
-    //_username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+   //_username =  [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     
     
-    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(5, 24, KScreenWidth - 10, 44 * 3) style:UITableViewStylePlain];
+    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(5 , 24 , KScreenWidth - 10, 44 * 3) style:UITableViewStylePlain];
     
     _tableview.backgroundColor = [UIColor cyanColor];
     _tableview.delegate = self;
@@ -75,6 +74,7 @@
     [self.view addSubview:_btn];
     [self.view addSubview:_tableview];
    
+
 }
 
 

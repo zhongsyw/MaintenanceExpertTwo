@@ -14,10 +14,15 @@
 
 #import "UIView+ZSExtension.h"
 #import "UIbutton.h"
-#import "ZSMessageView.h"
 
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
+
+@interface ZSLoginViewController ()
+{
+    BOOL _yanzhengmalog;
+}
+@end
 
 
 @implementation ZSLoginViewController
@@ -25,8 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
-    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -42,7 +46,7 @@
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:self.view.frame];
     imageview.image = [UIImage imageNamed:@"93S58PICcXy_1024_meitu_1"];
     [self.view addSubview:imageview];
-    
+   
     [self createUI];
 
 }
@@ -51,12 +55,12 @@
    
 //导航栏的透明
  
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    
-    self.view.contentMode = UIViewContentModeScaleAspectFill;
-    
-    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    self.navigationController.navigationBarHidden = NO;
+//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//    
+//    self.view.contentMode = UIViewContentModeScaleAspectFill;
+//    
+//    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+//    self.navigationController.navigationBarHidden = NO;
     [self createlogo];
     
     [self createtextfield];
@@ -67,17 +71,18 @@
     
     [self createRegisterAndForgetsecret];
     
-    UIButton *leftButton = [[UIButton alloc]init];
-    leftButton.frame = CGRectMake(10, 24, 40, 40);
     
-    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
+    UIButton *leftButton = [[UIButton alloc]init];
+    leftButton.frame = CGRectMake(KScreenWidth - 35 , 24, 25, 25);
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"twtr-icn_close"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:leftButton];
+    
 }
 
 - (void)back {
-   
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)createlogo {
@@ -138,15 +143,40 @@
     [secrettextfield addSubview:lineView1];
     [self.view addSubview:secrettextfield];
 
-//    UIImageView *rightView = [[UIImageView alloc]initWithFrame:CGRectMake(KScreenWidth - 110, 0, 30, 30)];
-//    rightView.image = [UIImage imageNamed:@"login_psw-1"];
-//    CGRect frame = rightView.frame;
-//    frame.size = CGSizeMake(40, 40);
-//    rightView.contentMode =UIViewContentModeScaleAspectFit;
-//    //rightView.contentMode = UIViewContentModeCenter;
-//    secrettextfield.rightView = rightView;
-//    secrettextfield.rightViewMode = UITextFieldViewModeAlways;
     _secret = secrettextfield;
+    
+    
+    _messageTF = [[UITextField alloc]init];
+    _messageTF.frame = CGRectMake(secrettextfield.frame.origin.x, secrettextfield.frame.origin.y, secrettextfield.frame.size.width - 120, secrettextfield.frame.size.height);
+    _messageTF.placeholder = @"请输入验证码";
+    [_messageTF setValue:[UIColor colorWithRed:85.0 / 255.0 green:85.0 / 255.0 blue:85.0 / 255.0 alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [_messageTF setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
+    _messageTF.clearButtonMode = UITextFieldViewModeAlways;
+    [self.view addSubview:_messageTF];
+    
+    /**
+     验证码按钮
+     */
+    
+    _messageBtn = [[UIButton alloc]initWithFrame:CGRectMake(secrettextfield.frame.origin.x + _messageTF.frame.size.width + 10 ,_messageTF.frame.origin.y, 110, secrettextfield.frame.size.height - 2)];
+    [_messageBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    
+    _messageBtn.backgroundColor = [UIColor colorWithRed:41.0 / 255.0 green:182.0 / 255.0 blue:246.0 / 255.0 alpha:1];
+    
+    [_messageBtn addTarget:self action:@selector(startTime) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:_messageBtn];
+    
+    UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(_messageTF.frame.origin.x, _messageTF.frame.origin.y + _messageTF.frame.size.height - 1, _phone.frame.size.width, 1)];
+    lineView2.backgroundColor = [UIColor blackColor];
+    
+    [self.view addSubview:lineView2];
+    
+    _messageTF.hidden = YES;
+    _messageBtn.hidden = YES;
+    _secret.hidden = NO;
+    
+    _yanzhengmalog = YES;
+    
 }
 
 /**
@@ -191,9 +221,10 @@
         [users setObject:data forKey:@"USER"];
         
 
+        [self.navigationController removeFromParentViewController];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }else {
+        }else {
         UIAlertView *aler = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"用户名密码输入错误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         aler.alertViewStyle = UIAlertViewStyleDefault;
         [aler show];
@@ -277,14 +308,90 @@
     NSLog(@"weibo");
 }
 
+/**
+ *  验证码登录
+ */
 - (void)clickyanzhengma {
     
-    //NSLog(@"yanzhengma");
+    if (_yanzhengmalog == YES) {
+        _messageTF.hidden = NO;
+        _messageBtn.hidden = NO;
+        _secret.hidden = YES;
+        _yanzhengmalog = NO;
+    }else{
+        _messageTF.hidden = YES;
+        _messageBtn.hidden = YES;
+        _secret.hidden = NO;
+        _yanzhengmalog = YES;
+    }
     
-   ZSMessageView *mes = [[ZSMessageView alloc]init];
-   [self.navigationController pushViewController:mes animated:YES];
     
 }
+/**
+ *  验证码的计时器
+ */
+- (void)startTime {
+    
+    __block int timeout= 59; //倒计时时间
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    
+    dispatch_source_set_event_handler(_timer, ^{
+        
+        if(timeout<=0){ //倒计时结束，关闭
+            
+            dispatch_source_cancel(_timer);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //设置界面的按钮显示
+                
+                [_messageBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                
+                _messageBtn.userInteractionEnabled = YES;
+                
+            });
+            
+        }else{
+            
+            //            int minutes = timeout / 60;
+            
+            int seconds = timeout % 60;
+            
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //设置界面的按钮显示
+                
+                [UIView beginAnimations:nil context:nil];
+                
+                [UIView setAnimationDuration:1];
+                
+                [_messageBtn setTitle:[NSString stringWithFormat:@"%@秒后重发",strTime] forState:UIControlStateNormal];
+                
+                [UIView commitAnimations];
+                
+                _messageBtn.userInteractionEnabled = NO;
+                
+            });
+            
+            timeout--;
+            
+            
+            
+        }
+        
+    });
+    
+    dispatch_resume(_timer);
+    
+}
+
 
 
 /**
@@ -345,28 +452,33 @@
     //NSLog(@"跳转注册");
     
     ZSRegisterViewController *registerVC= [[ZSRegisterViewController alloc]init];
-    
+
     [self.navigationController pushViewController:registerVC animated:YES];
-    
+
+
+    //[self presentViewController:registerVC animated:YES completion:nil];
+
 }
 
 - (void)Forget {
     //NSLog(@"跳转改密");
     ZSChangePasswordVC *changeVC = [[ZSChangePasswordVC alloc]init];
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:changeVC animated:YES];
+    //[self presentViewController:changeVC animated:YES completion:nil];
 }
 
 /**
  *  界面消失
  *
  */
-- (void)viewWillDisappear:(BOOL)animated {
-
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    
-    [self.navigationController.navigationBar setShadowImage:nil];
-    
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//
+//    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+//    
+//    [self.navigationController.navigationBar setShadowImage:nil];
+//    
+//}
 
 /**
  *  键盘响应

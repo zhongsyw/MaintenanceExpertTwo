@@ -95,7 +95,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth , KScreenHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth , KScreenHeight + 64) style:UITableViewStyleGrouped];
         _tableView.y = -20;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -147,10 +147,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.navigationController.navigationBarHidden = YES;
-    
-    
     
     [self setupHeaderView];
     
@@ -421,8 +417,14 @@
 - (void)click {
     
     ZSLoginViewController *zslogin = [[ZSLoginViewController alloc]init];
-    [self presentViewController:zslogin animated:YES completion:nil];
-   
+    [self.tabBarController addChildViewController:zslogin];
+    //[self presentViewController:zslogin animated:YES completion:nil];
+    //self.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:zslogin animated:YES];
+    //self.hidesBottomBarWhenPushed=NO;
+    
+    
+    
 }
 
 
@@ -515,9 +517,10 @@
         
         
             vc.title = self.dataList[indexPath.section][indexPath.row][@"title"];
-            
-        [self.navigationController pushViewController:vc animated:YES];
         
+
+        [self.navigationController pushViewController:vc animated:YES];
+
         
         
     }

@@ -8,13 +8,19 @@
 
 #import "ZSRegisterViewController.h"
 #import "ZSRegisterCustomerVC.h"
+#import "ZHBtnSelectView.h"
+#import "ZHCustomBtn.h"
 
 
-@interface ZSRegisterViewController (){
+@interface ZSRegisterViewController ()<ZHBtnSelectViewDelegate>{
     
     UIButton* msgBtn;
 }
+@property (nonatomic,weak)ZHCustomBtn *currentkindBtn;
+@property (nonatomic,weak)ZHBtnSelectView *btnkindView;
 
+
+@property (nonatomic,strong)NSArray *kindArr;
 @end
 
 
@@ -22,16 +28,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"注册帐号";
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.title = @"注册帐号";
+    self.navigationController.navigationBarHidden = NO;
     
     [self creatView];
     
-    
 }
-
 
 - (void)creatView {
     
@@ -39,6 +42,7 @@
     [self messageNumber];
     [self passwordNumber];
     [self nextStepOfBtn];
+    [self createkindbtn];
 }
 
 
@@ -54,7 +58,7 @@
     [self.view addSubview:imageV];
     
     imageV.sd_layout
-    .topSpaceToView(_textViewType, 40 + 64)
+    .topSpaceToView(_textViewType, 40)
     .leftSpaceToView(self.view, 30)
     .widthIs(30)
     .heightIs(40);
@@ -174,7 +178,36 @@
     .rightSpaceToView(self.view, 30)
     .heightIs(1);
     
+   }
+
+//  客户还是工程师
+- (void)createkindbtn {
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(KScreenWidth / 2 - 105, 210, 50, 40)];
+    [self.view addSubview:label];
+    
+    label.text = @"我  是";
+    
+    self.kindArr = [[NSArray alloc]initWithObjects:@"客户",@"工程师", nil];
+    // 自动计算view的高度
+    ZHBtnSelectView *btnView = [[ZHBtnSelectView alloc] initWithFrame:CGRectMake(label.frame.origin.x + 60, label.frame.origin.y + 3, 150, 0)
+                                                               titles:self.kindArr column:2];
+    [self.view addSubview:btnView];
+    btnView.verticalMargin = 10;
+    btnView.delegate = self;
+    self.btnkindView = btnView;
+    self.btnkindView.tag = btnView.tag;
+
 }
+
+- (void)btnSelectView:(ZHBtnSelectView *)btnSelectView selectedBtn:(ZHCustomBtn *)btn {
+    self.btnkindView.selectType = BtnSelectTypeSingleChoose;
+    self.currentkindBtn.btnSelected = NO;
+    self.currentkindBtn = btn;
+    btn.btnSelected = YES;
+   
+}
+
 
 //  注册按钮
 - (void)nextStepOfBtn {
@@ -259,19 +292,14 @@
 - (void)tabButtonTapped:(UIButton *)sender forEvent:(UIEvent *)event {
     [self performSelector:@selector(btnOfRegistration:) withObject:sender afterDelay:0.2];
 }
-//  Two
-- (void)repeatBtnTapped:(UIButton *)sender forEvent:(UIEvent *)event {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(btnOfRegistration:) object:sender];
-    // 延长0.2 秒
-    [self performSelector:@selector(btnOfDoubleTouch:) withObject:sender afterDelay:0.2];
-}
 
 //  注 册 按 钮 方法
 - (void)btnOfRegistration:(NSNumber* )number {
     
     ZSRegisterCustomerVC* custormerVC = [[ZSRegisterCustomerVC alloc] init];
-    
     [self.navigationController pushViewController:custormerVC animated:YES];
+
+    //[self.navigationController popToRootViewControllerAnimated:YES];
     
 }
 #warning 单击并移出按钮范围 进入工程师界面，单击 进入客户界面

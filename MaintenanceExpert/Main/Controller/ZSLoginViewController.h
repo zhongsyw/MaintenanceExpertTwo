@@ -16,8 +16,8 @@
 @property(nonatomic,strong)UITextField *phone;
 @property(nonatomic,strong)UITextField *secret;
 
-
-
+@property(nonatomic,strong)UITextField *messageTF;
+@property(nonatomic,strong)UIButton *messageBtn;
 /**
  *  第三方登录，每种登录的button的tag值来区分
  */

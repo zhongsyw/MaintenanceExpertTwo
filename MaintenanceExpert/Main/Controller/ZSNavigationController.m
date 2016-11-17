@@ -47,8 +47,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBarHidden = YES;
- 
+    
+     self.navigationBarHidden = YES;
     
 }
 
@@ -57,12 +57,8 @@
     
     if (self.viewControllers.count > 0) {
         
-        viewController.hidesBottomBarWhenPushed = NO;
-        
-        
-        
-        
-        
+        viewController.hidesBottomBarWhenPushed = YES;
+       
     }
     
     return [super pushViewController:viewController animated:animated];

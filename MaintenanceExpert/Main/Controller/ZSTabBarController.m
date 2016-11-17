@@ -13,6 +13,7 @@
 #import "ZSEditAndReceiveViewController.h"
 #import "ZSMessageViewController.h"
 #import "ZSMineViewController.h"
+#import "ZSLoginViewController.h"
 
 #import "XWPopMenuController.h"
 #import "UIImage+XW.h"
@@ -55,6 +56,8 @@
     tabBar.myDelegate = self;
      //kvc实质是修改了系统的_tabBar
     [self setValue:tabBar forKeyPath:@"tabBar"];
+    
+    
 }
 
 #pragma mark - ------------------------------------------------------------------
@@ -122,12 +125,11 @@
 
     XWPopMenuController *vc = [[XWPopMenuController alloc]init];
     [self.tabBarController addChildViewController:vc];
+   
     //虚化背景
     UIImage *image = [UIImage imageWithCaputureView:self.view];
     
     vc.backImg = image;
-    
-   
     [self.navigationController pushViewController:vc animated:NO];
     
 }

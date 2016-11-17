@@ -102,7 +102,6 @@
 		57AAB69A1DD3109300C8707B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AAB6991DD3109300C8707B /* MapKit.framework */; };
 		57AAB69C1DD310E600C8707B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AAB69B1DD310E600C8707B /* CoreLocation.framework */; };
 		57D7E1E41DB9AACA005E69E2 /* ZSChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7E1E31DB9AACA005E69E2 /* ZSChangePasswordVC.m */; };
-		57D7E1FC1DB9E378005E69E2 /* ZSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7E1FB1DB9E378005E69E2 /* ZSMessageView.m */; };
 		81A2D96C1A28D1EBC4B17F4E /* libPods-MaintenanceExpert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6528092F46243E4DB761EA15 /* libPods-MaintenanceExpert.a */; };
 /* End PBXBuildFile section */
 
@@ -307,8 +306,6 @@
 		57AAB69B1DD310E600C8707B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		57D7E1E21DB9AACA005E69E2 /* ZSChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSChangePasswordVC.h; sourceTree = "<group>"; };
 		57D7E1E31DB9AACA005E69E2 /* ZSChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSChangePasswordVC.m; sourceTree = "<group>"; };
-		57D7E1FA1DB9E378005E69E2 /* ZSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMessageView.h; sourceTree = "<group>"; };
-		57D7E1FB1DB9E378005E69E2 /* ZSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMessageView.m; sourceTree = "<group>"; };
 		6528092F46243E4DB761EA15 /* libPods-MaintenanceExpert.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaintenanceExpert.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC9CB1DA0ADD916D7022FE2C /* Pods-MaintenanceExpert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaintenanceExpert.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaintenanceExpert/Pods-MaintenanceExpert.debug.xcconfig"; sourceTree = "<group>"; };
 		EF99949DBB471B496024858D /* Pods-MaintenanceExpert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaintenanceExpert.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaintenanceExpert/Pods-MaintenanceExpert.release.xcconfig"; sourceTree = "<group>"; };
@@ -677,8 +674,6 @@
 				5768C2531DB5BD4C0069B421 /* ZSTabBar.m */,
 				5787E8941DB866E40062249F /* ZSLoginViewController.h */,
 				5787E8951DB866E40062249F /* ZSLoginViewController.m */,
-				57D7E1FA1DB9E378005E69E2 /* ZSMessageView.h */,
-				57D7E1FB1DB9E378005E69E2 /* ZSMessageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1126,7 +1121,6 @@
 				30F6C5A21DD1AA67009E766C /* ZLPhotoActionSheet.m in Sources */,
 				576E11691DDAA3AD00D6C1E2 /* ZSBalanceViewController.m in Sources */,
 				5768C22C1DB5B9050069B421 /* AppDelegate.m in Sources */,
-				57D7E1FC1DB9E378005E69E2 /* ZSMessageView.m in Sources */,
 				5787E89F1DB8A9250062249F /* UIbutton.m in Sources */,
 				57D7E1E41DB9AACA005E69E2 /* ZSChangePasswordVC.m in Sources */,
 				30F6C4AA1DD198F3009E766C /* ZLShowBigImage.m in Sources */,

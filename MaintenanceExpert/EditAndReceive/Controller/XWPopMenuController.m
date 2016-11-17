@@ -349,7 +349,6 @@
         
     } completion:^(BOOL finished) {
         
-        //[self dismissViewControllerAnimated:YES completion:nil];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }];
     
